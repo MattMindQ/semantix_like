@@ -1,1 +1,0 @@
-backend/data/cc.fr.300.reduced.vec filter=lfs diff=lfs merge=lfs -text
