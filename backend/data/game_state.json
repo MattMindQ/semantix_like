@@ -1,0 +1,16 @@
+{
+  "target_word": "politique",
+  "attempts": [],
+  "word_found": false,
+  "similar_words": [],
+  "jokers": {
+    "high_similarity": {
+      "remaining": 2,
+      "words_per_use": 3
+    },
+    "medium_similarity": {
+      "remaining": 2,
+      "words_per_use": 3
+    }
+  }
+}
