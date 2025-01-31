@@ -57,3 +57,4 @@ yarn-error.log*
 .vercel
 # model
 "backend/data/cc.fr.300.reduced.vec" 
+"backend/data/cc.fr.300.reduced.vec" 
