@@ -1,7 +1,5 @@
-# Use Node.js as base image
 FROM node:18-alpine
 
-# Set working directory
 WORKDIR /app
 
 # Copy package files
@@ -10,11 +8,8 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy all frontend files
+# Copy the rest of the code
 COPY . .
 
-# Build the application
-RUN npm run build
-
-# Command to run the application
-CMD ["npm", "start"]
+# For development: Start Vite dev server
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

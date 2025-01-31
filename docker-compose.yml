@@ -1,41 +1,33 @@
-# Version of Docker Compose
 version: '3.8'
 
-# Define services (containers)
 services:
-  # Backend service
   backend:
-    # Build instructions
     build: 
-      # Location of backend code
       context: ./backend
-      # Which Dockerfile to use
       dockerfile: Dockerfile
-    # Port mapping (host:container)
     ports:
-      - "8000:8000"
-    # Mount volumes (for development)
+      - "5000:5000"
     volumes:
       - ./backend:/app
       - model-data:/app/data
-    # Environment variables
     environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
       - FASTTEXT_MODEL_PATH=/app/data/cc.fr.300.reduced.vec
 
-  # Frontend service
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "5173:5173"  # Vite's default port
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    # Wait for backend to start first
+    environment:
+      - VITE_API_URL=http://localhost:5000
     depends_on:
       - backend
 
-# Define named volumes
 volumes:
   model-data:

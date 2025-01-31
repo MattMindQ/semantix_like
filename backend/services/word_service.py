@@ -4,16 +4,24 @@ from typing import List, Dict
 import random
 from gensim.models import KeyedVectors
 
+from .model_downloader import download_model
+import os
+
 class WordEmbeddingService:
-    def __init__(self, fasttext_path='data/cc.fr.300.vec'):
+    def __init__(self, model_path='data/cc.fr.300.reduced.vec'):
         """
-        Initialize the service by loading pre-trained FastText embeddings from .vec file.
-        
-        :param fasttext_path: Path to the FastText .vec file
+        Initialize the service, downloading the model if needed.
         """
         try:
-            logger.info("Loading FastText embeddings from .vec file...")
-            self.model = KeyedVectors.load_word2vec_format(fasttext_path)
+            # Get model URL from environment variable
+            model_url = os.getenv('MODEL_URL', 'https://huggingface.co/Miroir/cc.fr.300.reduced/resolve/main/cc.fr.300.reduced.vec')
+            
+            # Download model if it doesn't exist
+            download_model(model_url, model_path)
+            
+            # Rest of your initialization code...
+            logger.info("Loading FastText embeddings...")
+            self.model = KeyedVectors.load_word2vec_format(model_path)
             
             # Build a quick-access dictionary {word: vector}
             self.vocab_vectors = {
