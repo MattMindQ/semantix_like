@@ -1,7 +1,8 @@
-# backend/app.py
 from flask import Flask
 from flask_cors import CORS
+from flask import request
 from loguru import logger
+import os
 from services.word_service import WordEmbeddingService
 from services.game_service import GameService
 from services.visualization_service import VisualizationService
@@ -10,21 +11,30 @@ from routes import register_routes
 def create_app(test_config=None):
     app = Flask(__name__)
     
-    # Configure CORS
+    # Configure CORS for all origins in production
     CORS(app, resources={
         r"/api/*": {
-            "origins": ["http://localhost:5173"],
+            "origins": ["http://localhost:5173", "https://*.vercel.app", "https://*.now.sh"],
             "methods": ["GET", "POST", "OPTIONS"],
             "allow_headers": ["Content-Type"],
         }
     })
 
-    # Configure logger
-    logger.add("app.log", rotation="500 MB")
+    # Configure logger to use stderr for Vercel
+    logger.remove()  # Remove default handler
+    logger.add(os.stderr, level="INFO")
 
     @app.after_request
     def after_request(response):
-        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:5173')
+        # Allow requests from Vercel frontend
+        allowed_origins = [
+            'http://localhost:5173',  # Development
+            'https://*.vercel.app',   # Vercel deployment
+            'https://*.now.sh'        # Vercel deployment (alternative domain)
+        ]
+        origin = request.headers.get('Origin')
+        if origin in allowed_origins:
+            response.headers.add('Access-Control-Allow-Origin', origin)
         response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
         response.headers.add('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
         return response
@@ -46,8 +56,9 @@ def create_app(test_config=None):
         # Register routes with the services
         register_routes(app, game_service, word_service, visualization_service)
         
-        # Validate routes with dummy responses
-        validate_routes(app)
+        if not os.getenv('VERCEL_ENV'):
+            # Only run validation in development
+            validate_routes(app)
 
     except Exception as e:
         logger.error(f"Failed to initialize services: {str(e)}")
@@ -74,7 +85,14 @@ def validate_routes(app):
             response = client.post(endpoint, json=data)
             logger.info(f"Route {endpoint} validation status: {response.status_code}")
 
+# Create the app instance
+app = create_app()
+
+# For local development
 if __name__ == '__main__':
-    logger.info("Starting Flask application")
-    app = create_app()
+    logger.info("Starting Flask application in development mode")
     app.run(debug=True)
+
+# For Vercel deployment
+# This is important - Vercel looks for this variable
+app = app.wsgi_app

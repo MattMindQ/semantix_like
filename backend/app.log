@@ -1,0 +1,72 @@
+2025-02-01 13:08:28.461 | INFO     | services.model_downloader:download_model:9 - Model file already exists at data/cc.fr.300.reduced.vec
+2025-02-01 13:08:28.465 | INFO     | services.word_service:__init__:23 - Loading FastText embeddings...
+2025-02-01 13:08:42.583 | INFO     | services.word_service:__init__:31 - FastText model loaded successfully with 50000 words in the vocabulary.
+2025-02-01 13:08:42.583 | INFO     | __main__:create_app:38 - Services initialized successfully
+2025-02-01 13:08:42.617 | INFO     | routes:get_game_state:106 - Retrieved game state: {'target_word': 'politique', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:08:42.633 | INFO     | __main__:validate_routes:65 - Route /api/game-state validation status: 200
+2025-02-01 13:08:42.638 | INFO     | __main__:validate_routes:65 - Route /api/visualization validation status: 200
+2025-02-01 13:08:42.639 | INFO     | routes:check_word:65 - Word check response: {'similarity': 0.17805832624435425, 'history': [{'word': 'test', 'similarity': 0.17805832624435425}], 'word_found': False, 'similar_words': []}
+2025-02-01 13:08:42.639 | INFO     | __main__:validate_routes:75 - Route /api/check-word validation status: 200
+2025-02-01 13:08:42.654 | INFO     | routes:use_joker:81 - Received joker request with type: high_similarity
+2025-02-01 13:08:42.654 | INFO     | services.game_service:use_joker:57 - Using joker of type: high_similarity
+2025-02-01 13:08:42.670 | INFO     | services.game_service:use_joker:77 - Target word: politique, range: (0.7, 0.8)
+2025-02-01 13:08:42.670 | INFO     | services.word_service:get_words_in_range:92 - Finding words for 'politique' in range [0.7, 0.8]
+2025-02-01 13:08:43.126 | INFO     | services.word_service:get_words_in_range:117 - Found 0 words in the range.
+2025-02-01 13:08:43.132 | INFO     | services.game_service:use_joker:88 - Found 0 words using joker:
+2025-02-01 13:08:43.138 | INFO     | services.game_service:use_joker:96 - Remaining high_similarity jokers: 1
+2025-02-01 13:08:43.145 | INFO     | routes:use_joker:89 - Joker response:
+2025-02-01 13:08:43.149 | INFO     | routes:use_joker:90 - Words: []
+2025-02-01 13:08:43.154 | INFO     | routes:use_joker:91 - Remaining jokers: {'high_similarity': {'remaining': 1, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}
+2025-02-01 13:08:43.166 | INFO     | __main__:validate_routes:75 - Route /api/use-joker validation status: 200
+2025-02-01 13:08:43.177 | INFO     | routes:reset_game:29 - Game reset with new state: {'target_word': 'clandestin', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:08:43.182 | INFO     | __main__:validate_routes:75 - Route /api/reset-game validation status: 200
+2025-02-01 13:08:59.045 | INFO     | services.model_downloader:download_model:9 - Model file already exists at data/cc.fr.300.reduced.vec
+2025-02-01 13:08:59.047 | INFO     | services.word_service:__init__:23 - Loading FastText embeddings...
+2025-02-01 13:09:13.842 | INFO     | services.word_service:__init__:31 - FastText model loaded successfully with 50000 words in the vocabulary.
+2025-02-01 13:09:13.848 | INFO     | __main__:create_app:38 - Services initialized successfully
+2025-02-01 13:09:13.861 | INFO     | routes:get_game_state:106 - Retrieved game state: {'target_word': 'clandestin', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:09:13.862 | INFO     | __main__:validate_routes:65 - Route /api/game-state validation status: 200
+2025-02-01 13:09:13.862 | INFO     | __main__:validate_routes:65 - Route /api/visualization validation status: 200
+2025-02-01 13:09:13.862 | INFO     | routes:check_word:65 - Word check response: {'similarity': 0.19101691246032715, 'history': [{'word': 'test', 'similarity': 0.19101691246032715}], 'word_found': False, 'similar_words': []}
+2025-02-01 13:09:13.878 | INFO     | __main__:validate_routes:75 - Route /api/check-word validation status: 200
+2025-02-01 13:09:13.880 | INFO     | routes:use_joker:81 - Received joker request with type: high_similarity
+2025-02-01 13:09:13.880 | INFO     | services.game_service:use_joker:57 - Using joker of type: high_similarity
+2025-02-01 13:09:13.880 | INFO     | services.game_service:use_joker:77 - Target word: clandestin, range: (0.7, 0.8)
+2025-02-01 13:09:13.880 | INFO     | services.word_service:get_words_in_range:92 - Finding words for 'clandestin' in range [0.7, 0.8]
+2025-02-01 13:09:14.233 | INFO     | services.word_service:get_words_in_range:117 - Found 0 words in the range.
+2025-02-01 13:09:14.237 | INFO     | services.game_service:use_joker:88 - Found 0 words using joker:
+2025-02-01 13:09:14.241 | INFO     | services.game_service:use_joker:96 - Remaining high_similarity jokers: 1
+2025-02-01 13:09:14.243 | INFO     | routes:use_joker:89 - Joker response:
+2025-02-01 13:09:14.248 | INFO     | routes:use_joker:90 - Words: []
+2025-02-01 13:09:14.251 | INFO     | routes:use_joker:91 - Remaining jokers: {'high_similarity': {'remaining': 1, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}
+2025-02-01 13:09:14.254 | INFO     | __main__:validate_routes:75 - Route /api/use-joker validation status: 200
+2025-02-01 13:09:14.260 | INFO     | routes:reset_game:29 - Game reset with new state: {'target_word': 'sociologie', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:09:14.262 | INFO     | __main__:validate_routes:75 - Route /api/reset-game validation status: 200
+2025-02-01 13:16:32.046 | INFO     | services.model_downloader:download_model:9 - Model file already exists at data/cc.fr.300.reduced.vec
+2025-02-01 13:16:32.046 | INFO     | services.word_service:__init__:23 - Loading FastText embeddings...
+2025-02-01 13:16:46.493 | INFO     | services.word_service:__init__:31 - FastText model loaded successfully with 50000 words in the vocabulary.
+2025-02-01 13:16:46.497 | INFO     | __main__:create_app:38 - Services initialized successfully
+2025-02-01 13:16:46.506 | INFO     | routes:get_game_state:106 - Retrieved game state: {'target_word': 'sociologie', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:16:46.512 | INFO     | __main__:validate_routes:65 - Route /api/game-state validation status: 200
+2025-02-01 13:16:46.519 | INFO     | __main__:validate_routes:65 - Route /api/visualization validation status: 200
+2025-02-01 13:16:46.524 | INFO     | routes:check_word:65 - Word check response: {'similarity': 0.123406782746315, 'history': [{'word': 'test', 'similarity': 0.123406782746315}], 'word_found': False, 'similar_words': []}
+2025-02-01 13:16:46.530 | INFO     | __main__:validate_routes:75 - Route /api/check-word validation status: 200
+2025-02-01 13:16:46.534 | INFO     | routes:use_joker:81 - Received joker request with type: high_similarity
+2025-02-01 13:16:46.537 | INFO     | services.game_service:use_joker:57 - Using joker of type: high_similarity
+2025-02-01 13:16:46.539 | INFO     | services.game_service:use_joker:77 - Target word: sociologie, range: (0.7, 0.8)
+2025-02-01 13:16:46.544 | INFO     | services.word_service:get_words_in_range:92 - Finding words for 'sociologie' in range [0.7, 0.8]
+2025-02-01 13:16:46.954 | INFO     | services.word_service:get_words_in_range:117 - Found 4 words in the range.
+2025-02-01 13:16:46.957 | DEBUG    | services.word_service:get_words_in_range:125 - Selected: épistémologie (sim=0.715)
+2025-02-01 13:16:46.959 | DEBUG    | services.word_service:get_words_in_range:125 - Selected: Sociologie (sim=0.731)
+2025-02-01 13:16:46.961 | DEBUG    | services.word_service:get_words_in_range:125 - Selected: anthropologie (sim=0.769)
+2025-02-01 13:16:46.964 | INFO     | services.game_service:use_joker:88 - Found 3 words using joker:
+2025-02-01 13:16:46.966 | INFO     | services.game_service:use_joker:90 - - épistémologie (similarity: 0.715)
+2025-02-01 13:16:46.968 | INFO     | services.game_service:use_joker:90 - - Sociologie (similarity: 0.731)
+2025-02-01 13:16:46.975 | INFO     | services.game_service:use_joker:90 - - anthropologie (similarity: 0.769)
+2025-02-01 13:16:46.978 | INFO     | services.game_service:use_joker:96 - Remaining high_similarity jokers: 1
+2025-02-01 13:16:46.980 | INFO     | routes:use_joker:89 - Joker response:
+2025-02-01 13:16:46.982 | INFO     | routes:use_joker:90 - Words: ['épistémologie', 'Sociologie', 'anthropologie']
+2025-02-01 13:16:46.984 | INFO     | routes:use_joker:91 - Remaining jokers: {'high_similarity': {'remaining': 1, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}
+2025-02-01 13:16:46.990 | INFO     | __main__:validate_routes:75 - Route /api/use-joker validation status: 200
+2025-02-01 13:16:46.997 | INFO     | routes:reset_game:29 - Game reset with new state: {'target_word': 'robot', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:16:47.000 | INFO     | __main__:validate_routes:75 - Route /api/reset-game validation status: 200
