@@ -43,34 +43,33 @@ def check_huggingface_connection() -> Tuple[bool, str, float]:
     try:
         start_time = time.time()
         
-        # Check if we're in local development
-        if is_local_url(MODEL_API_URL):
-            local_url = get_local_api_url()
-            logger.info(f"Local environment detected, checking FastAPI service at {local_url}")
+        # Try root endpoint first, then fallback to /api/health
+        endpoints = ["", "/api/health"]
+        
+        for endpoint in endpoints:
             try:
-                response = requests.get(f"{local_url}/")
+                url = f"{MODEL_API_URL}{endpoint}"
+                logger.info(f"Trying endpoint: {url}")
+                response = requests.get(url)
                 response_time = time.time() - start_time
-                return True, "Connected to local FastAPI service", response_time
+                
+                if response.status_code == 200:
+                    health_data = response.json()
+                    model_status = health_data.get("model_loaded", True)
+                    if model_status:
+                        return True, "Service healthy and model loaded", response_time
+                    else:
+                        return False, "Service running but model not loaded", response_time
             except requests.RequestException as e:
-                logger.warning(f"Local service not responding: {str(e)}")
-                return False, "Local FastAPI service not available", 0.0
+                logger.warning(f"Failed to connect to {endpoint}: {str(e)}")
+                continue
         
-        # Production Hugging Face check
-        api_url = f"{MODEL_API_URL}/api/health"
-        logger.info(f"Checking Hugging Face service at: {api_url}")
-        
-        response = requests.get(api_url)
-        response_time = time.time() - start_time
-        
-        if response.status_code == 200:
-            return True, "Connected to Hugging Face service", response_time
-        else:
-            return False, f"Hugging Face service returned status {response.status_code}", response_time
+        return False, "Could not connect to any health endpoints", time.time() - start_time
             
-    except requests.RequestException as e:
+    except Exception as e:
         logger.error(f"Connection error: {str(e)}")
         return False, f"Failed to connect to service: {str(e)}", 0.0
-
+    
 @app.route('/api/system-health', methods=['GET'])
 def system_health():
     """
@@ -142,6 +141,7 @@ def check_word():
     try:
         data = request.get_json()
         response = requests.post(f"{MODEL_API_URL}/api/check-word", json=data)
+        print(f"Response sent: {response}")
         return jsonify(response.json())
     except Exception as e:
         logger.exception("Error checking word")

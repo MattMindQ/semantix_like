@@ -199,6 +199,7 @@ async function handleJokerUse(type: 'high_similarity' | 'medium_similarity') {
 }
 
 // Handle guess submission
+// In main.ts
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const guess = input.value.trim().toLowerCase();
@@ -206,21 +207,33 @@ form.addEventListener('submit', async (e) => {
 
     try {
         const response: GameResponse = await checkWord(guess);
-        gameState.attempts = response.history;
-        gameState.word_found = response.word_found;
-        
-        UI.showResult(response.similarity);
-        UI.updateGameDisplay(gameState);
-        await updateVisualization();
-        
-        if (response.word_found && response.similar_words) {
-            gameState.similar_words = response.similar_words;
-            UI.showSimilarWords(response.similar_words);
+        console.log('Response from check-word:', response); // Debug log
+
+        // Update game state only if we have a valid response
+        if (response && response.history) {
+            gameState = {
+                ...gameState,
+                attempts: response.history,
+                word_found: response.word_found
+            };
+            
+            UI.showResult(response.similarity);
+            UI.updateGameDisplay(gameState);
+            await updateVisualization();
+            
+            if (response.word_found && response.similar_words) {
+                gameState.similar_words = response.similar_words;
+                UI.showSimilarWords(response.similar_words);
+            }
+        } else {
+            console.error('Invalid response format:', response);
         }
         
         input.value = '';
     } catch (error) {
         console.error('Error checking word:', error);
+        // Maybe show an error message to the user
+        alert('Une erreur est survenue. Veuillez réessayer.');
     }
 });
 

@@ -39,11 +39,28 @@ async function apiCall(endpoint: string, options?: RequestInit) {
     }
 }
 
+// frontend/src/services/api.ts
 export async function checkWord(guessWord: string) {
-    return apiCall('/check-word', {
-        method: 'POST',
-        body: JSON.stringify({ word: guessWord })
-    });
+    try {
+        const response = await apiCall('/check-word', {
+            method: 'POST',
+            body: JSON.stringify({ word: guessWord })
+        });
+        
+        // Debug log the response
+        console.log('Check word response:', response);
+        
+        // Ensure response has the correct structure
+        if (!response.history) {
+            console.error('Invalid response format:', response);
+            throw new Error('Invalid response format from server');
+        }
+        
+        return response;
+    } catch (error) {
+        console.error('Error checking word:', error);
+        throw error;
+    }
 }
 
 export async function getGameState() {

@@ -1610,3 +1610,67 @@ requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 2025-02-01 16:41:24.805 | INFO     | __main__:system_health:81 - Performing system health check for: https://miroir-semantix-api.hf.space
 2025-02-01 16:41:24.809 | INFO     | __main__:check_huggingface_connection:60 - Checking Hugging Face service at: https://miroir-semantix-api.hf.space/api/health
 2025-02-01 16:41:25.620 | INFO     | __main__:system_health:107 - Health check results: {'status': 'degraded', 'timestamp': '2025-02-01 16:41:25', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'error', 'message': 'Hugging Face service returned status 404', 'response_time': '0.811s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 17:19:35.842 | INFO     | __main__:system_health:81 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 17:19:35.853 | INFO     | __main__:check_huggingface_connection:60 - Checking Hugging Face service at: https://miroir-semantix-api.hf.space/api/health
+2025-02-01 17:19:36.356 | INFO     | __main__:system_health:107 - Health check results: {'status': 'degraded', 'timestamp': '2025-02-01 17:19:36', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'error', 'message': 'Hugging Face service returned status 404', 'response_time': '0.503s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 17:19:53.528 | INFO     | __main__:<module>:198 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 17:42:51.982 | INFO     | __main__:<module>:199 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 17:43:43.696 | INFO     | __main__:system_health:81 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 17:43:43.700 | INFO     | __main__:check_huggingface_connection:60 - Checking Hugging Face service at: https://miroir-semantix-api.hf.space/api/health
+2025-02-01 17:43:44.362 | INFO     | __main__:system_health:107 - Health check results: {'status': 'degraded', 'timestamp': '2025-02-01 17:43:44', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'error', 'message': 'Hugging Face service returned status 404', 'response_time': '0.662s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 17:52:54.242 | INFO     | __main__:<module>:198 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 17:53:30.665 | INFO     | __main__:system_health:80 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 17:53:30.669 | INFO     | __main__:check_huggingface_connection:52 - Trying endpoint: https://miroir-semantix-api.hf.space
+2025-02-01 17:53:31.314 | INFO     | __main__:system_health:106 - Health check results: {'status': 'healthy', 'timestamp': '2025-02-01 17:53:31', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'healthy', 'message': 'Service healthy and model loaded', 'response_time': '0.644s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 17:53:31.640 | INFO     | __main__:get_game_state:165 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 17:53:32.087 | INFO     | __main__:get_game_state:167 - Response status: 200
+2025-02-01 17:58:55.756 | INFO     | __main__:system_health:80 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 17:58:55.760 | INFO     | __main__:check_huggingface_connection:52 - Trying endpoint: https://miroir-semantix-api.hf.space
+2025-02-01 17:58:56.353 | INFO     | __main__:system_health:106 - Health check results: {'status': 'healthy', 'timestamp': '2025-02-01 17:58:56', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'healthy', 'message': 'Service healthy and model loaded', 'response_time': '0.593s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 17:58:56.384 | INFO     | __main__:system_health:80 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 17:58:56.406 | INFO     | __main__:check_huggingface_connection:52 - Trying endpoint: https://miroir-semantix-api.hf.space
+2025-02-01 17:58:56.907 | INFO     | __main__:system_health:106 - Health check results: {'status': 'healthy', 'timestamp': '2025-02-01 17:58:56', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'healthy', 'message': 'Service healthy and model loaded', 'response_time': '0.501s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 17:58:57.220 | INFO     | __main__:get_game_state:165 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 17:58:57.637 | INFO     | __main__:get_game_state:167 - Response status: 200
+2025-02-01 17:58:57.998 | INFO     | __main__:get_game_state:165 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 17:58:58.417 | INFO     | __main__:get_game_state:167 - Response status: 200
+2025-02-01 17:59:20.937 | INFO     | __main__:system_health:80 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 17:59:20.941 | INFO     | __main__:check_huggingface_connection:52 - Trying endpoint: https://miroir-semantix-api.hf.space
+2025-02-01 17:59:21.372 | INFO     | __main__:system_health:106 - Health check results: {'status': 'healthy', 'timestamp': '2025-02-01 17:59:21', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'healthy', 'message': 'Service healthy and model loaded', 'response_time': '0.430s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 17:59:21.384 | INFO     | __main__:system_health:80 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 17:59:21.392 | INFO     | __main__:check_huggingface_connection:52 - Trying endpoint: https://miroir-semantix-api.hf.space
+2025-02-01 17:59:21.867 | INFO     | __main__:system_health:106 - Health check results: {'status': 'healthy', 'timestamp': '2025-02-01 17:59:21', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'healthy', 'message': 'Service healthy and model loaded', 'response_time': '0.475s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 17:59:22.019 | INFO     | __main__:get_game_state:165 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 17:59:22.406 | INFO     | __main__:get_game_state:167 - Response status: 200
+2025-02-01 17:59:22.729 | INFO     | __main__:get_game_state:165 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 17:59:23.135 | INFO     | __main__:get_game_state:167 - Response status: 200
+2025-02-01 18:00:04.012 | INFO     | __main__:system_health:80 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 18:00:04.018 | INFO     | __main__:check_huggingface_connection:52 - Trying endpoint: https://miroir-semantix-api.hf.space
+2025-02-01 18:00:04.566 | INFO     | __main__:system_health:106 - Health check results: {'status': 'healthy', 'timestamp': '2025-02-01 18:00:04', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'healthy', 'message': 'Service healthy and model loaded', 'response_time': '0.548s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 18:00:04.963 | INFO     | __main__:get_game_state:165 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 18:00:05.229 | INFO     | __main__:system_health:80 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 18:00:05.232 | INFO     | __main__:check_huggingface_connection:52 - Trying endpoint: https://miroir-semantix-api.hf.space
+2025-02-01 18:00:05.418 | INFO     | __main__:get_game_state:167 - Response status: 200
+2025-02-01 18:00:05.612 | INFO     | __main__:system_health:106 - Health check results: {'status': 'healthy', 'timestamp': '2025-02-01 18:00:05', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'healthy', 'message': 'Service healthy and model loaded', 'response_time': '0.380s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 18:00:05.812 | INFO     | __main__:get_game_state:165 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 18:00:06.226 | INFO     | __main__:get_game_state:167 - Response status: 200
+2025-02-01 18:02:12.236 | INFO     | __main__:system_health:80 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 18:02:12.243 | INFO     | __main__:check_huggingface_connection:52 - Trying endpoint: https://miroir-semantix-api.hf.space
+2025-02-01 18:02:12.777 | INFO     | __main__:system_health:106 - Health check results: {'status': 'healthy', 'timestamp': '2025-02-01 18:02:12', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'healthy', 'message': 'Service healthy and model loaded', 'response_time': '0.534s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 18:02:13.109 | INFO     | __main__:get_game_state:165 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 18:02:13.596 | INFO     | __main__:get_game_state:167 - Response status: 200
+2025-02-01 18:05:21.723 | INFO     | __main__:system_health:80 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 18:05:21.730 | INFO     | __main__:check_huggingface_connection:52 - Trying endpoint: https://miroir-semantix-api.hf.space
+2025-02-01 18:05:22.523 | INFO     | __main__:system_health:106 - Health check results: {'status': 'healthy', 'timestamp': '2025-02-01 18:05:22', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'healthy', 'message': 'Service healthy and model loaded', 'response_time': '0.792s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 18:05:22.857 | INFO     | __main__:get_game_state:165 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 18:05:23.240 | INFO     | __main__:get_game_state:167 - Response status: 200
+2025-02-01 18:05:55.095 | INFO     | __main__:system_health:80 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 18:05:55.098 | INFO     | __main__:check_huggingface_connection:52 - Trying endpoint: https://miroir-semantix-api.hf.space
+2025-02-01 18:05:55.550 | INFO     | __main__:system_health:106 - Health check results: {'status': 'healthy', 'timestamp': '2025-02-01 18:05:55', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'healthy', 'message': 'Service healthy and model loaded', 'response_time': '0.451s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 18:05:55.907 | INFO     | __main__:get_game_state:165 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 18:05:56.327 | INFO     | __main__:get_game_state:167 - Response status: 200
+2025-02-01 18:18:43.763 | INFO     | __main__:system_health:80 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 18:18:43.770 | INFO     | __main__:check_huggingface_connection:52 - Trying endpoint: https://miroir-semantix-api.hf.space
+2025-02-01 18:18:46.877 | INFO     | __main__:system_health:106 - Health check results: {'status': 'healthy', 'timestamp': '2025-02-01 18:18:46', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'healthy', 'message': 'Service healthy and model loaded', 'response_time': '3.108s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 18:18:47.511 | INFO     | __main__:get_game_state:165 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 18:18:48.317 | INFO     | __main__:get_game_state:167 - Response status: 200

@@ -2,19 +2,35 @@
 import { GameState } from '../types';
 import { updateWordList, showJokerWords as showJokerWordsInList } from './word-list-updates';
 
+// src/utils/ui-updates.ts
 export function updateStats(gameState: GameState) {
+    if (!gameState || !gameState.attempts) {
+        console.warn('Invalid game state or missing attempts');
+        return;
+    }
+
     const attempts = gameState.attempts;
     const attemptCount = document.getElementById('attemptCount');
     const bestScore = document.getElementById('bestScore');
     const averageScore = document.getElementById('averageScore');
     
-    if (!attemptCount || !bestScore || !averageScore || attempts.length === 0) return;
+    if (!attemptCount || !bestScore || !averageScore) {
+        console.warn('Required DOM elements not found');
+        return;
+    }
 
-    attemptCount.textContent = attempts.length.toString();
+    const count = attempts.length;
+    attemptCount.textContent = count.toString();
     
+    if (count === 0) {
+        bestScore.textContent = '0%';
+        averageScore.textContent = '0%';
+        return;
+    }
+
     const scores = attempts.map(a => a.similarity);
     const maxScore = Math.max(...scores);
-    const avgScore = scores.reduce((a, b) => a + b) / scores.length;
+    const avgScore = scores.reduce((a, b) => a + b) / count;
     
     bestScore.textContent = `${(maxScore * 100).toFixed(1)}%`;
     averageScore.textContent = `${(avgScore * 100).toFixed(1)}%`;
