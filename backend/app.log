@@ -70,3 +70,52 @@
 2025-02-01 13:16:46.990 | INFO     | __main__:validate_routes:75 - Route /api/use-joker validation status: 200
 2025-02-01 13:16:46.997 | INFO     | routes:reset_game:29 - Game reset with new state: {'target_word': 'robot', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
 2025-02-01 13:16:47.000 | INFO     | __main__:validate_routes:75 - Route /api/reset-game validation status: 200
+2025-02-01 13:33:33.722 | INFO     | services.model_downloader:download_model:9 - Model file already exists at data/cc.fr.300.reduced.vec
+2025-02-01 13:33:33.728 | INFO     | services.word_service:__init__:23 - Loading FastText embeddings...
+2025-02-01 13:33:46.866 | INFO     | services.word_service:__init__:31 - FastText model loaded successfully with 50000 words in the vocabulary.
+2025-02-01 13:33:46.870 | INFO     | __main__:create_app:52 - Services initialized successfully
+2025-02-01 13:33:46.882 | INFO     | routes:get_game_state:106 - Retrieved game state: {'target_word': 'robot', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:33:46.886 | INFO     | __main__:validate_routes:80 - Route /api/game-state validation status: 200
+2025-02-01 13:33:46.890 | INFO     | __main__:validate_routes:80 - Route /api/visualization validation status: 200
+2025-02-01 13:33:46.896 | INFO     | routes:check_word:65 - Word check response: {'similarity': 0.3135545253753662, 'history': [{'word': 'test', 'similarity': 0.3135545253753662}], 'word_found': False, 'similar_words': []}
+2025-02-01 13:33:46.903 | INFO     | __main__:validate_routes:90 - Route /api/check-word validation status: 200
+2025-02-01 13:33:46.911 | INFO     | routes:use_joker:81 - Received joker request with type: high_similarity
+2025-02-01 13:33:46.914 | INFO     | services.game_service:use_joker:57 - Using joker of type: high_similarity
+2025-02-01 13:33:46.920 | INFO     | services.game_service:use_joker:77 - Target word: robot, range: (0.7, 0.8)
+2025-02-01 13:33:46.928 | INFO     | services.word_service:get_words_in_range:92 - Finding words for 'robot' in range [0.7, 0.8]
+2025-02-01 13:33:47.247 | INFO     | services.word_service:get_words_in_range:117 - Found 1 words in the range.
+2025-02-01 13:33:47.253 | INFO     | services.game_service:use_joker:88 - Found 1 words using joker:
+2025-02-01 13:33:47.260 | INFO     | services.game_service:use_joker:90 - - Robot (similarity: 0.703)
+2025-02-01 13:33:47.266 | INFO     | services.game_service:use_joker:96 - Remaining high_similarity jokers: 1
+2025-02-01 13:33:47.272 | INFO     | routes:use_joker:89 - Joker response:
+2025-02-01 13:33:47.278 | INFO     | routes:use_joker:90 - Words: ['Robot']
+2025-02-01 13:33:47.284 | INFO     | routes:use_joker:91 - Remaining jokers: {'high_similarity': {'remaining': 1, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}
+2025-02-01 13:33:47.289 | INFO     | __main__:validate_routes:90 - Route /api/use-joker validation status: 200
+2025-02-01 13:33:47.300 | INFO     | routes:reset_game:29 - Game reset with new state: {'target_word': 'robotique', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:33:47.307 | INFO     | __main__:validate_routes:90 - Route /api/reset-game validation status: 200
+2025-02-01 13:33:47.313 | INFO     | __main__:<module>:96 - Starting Flask application in development mode
+2025-02-01 13:34:00.830 | INFO     | services.model_downloader:download_model:9 - Model file already exists at data/cc.fr.300.reduced.vec
+2025-02-01 13:34:00.834 | INFO     | services.word_service:__init__:23 - Loading FastText embeddings...
+2025-02-01 13:34:13.530 | INFO     | services.word_service:__init__:31 - FastText model loaded successfully with 50000 words in the vocabulary.
+2025-02-01 13:34:13.535 | INFO     | __main__:create_app:52 - Services initialized successfully
+2025-02-01 13:34:13.547 | INFO     | routes:get_game_state:106 - Retrieved game state: {'target_word': 'robotique', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:34:13.553 | INFO     | __main__:validate_routes:80 - Route /api/game-state validation status: 200
+2025-02-01 13:34:13.557 | INFO     | __main__:validate_routes:80 - Route /api/visualization validation status: 200
+2025-02-01 13:34:13.563 | INFO     | routes:check_word:65 - Word check response: {'similarity': 0.18469202518463135, 'history': [{'word': 'test', 'similarity': 0.18469202518463135}], 'word_found': False, 'similar_words': []}
+2025-02-01 13:34:13.571 | INFO     | __main__:validate_routes:90 - Route /api/check-word validation status: 200
+2025-02-01 13:34:13.575 | INFO     | routes:use_joker:81 - Received joker request with type: high_similarity
+2025-02-01 13:34:13.578 | INFO     | services.game_service:use_joker:57 - Using joker of type: high_similarity
+2025-02-01 13:34:13.583 | INFO     | services.game_service:use_joker:77 - Target word: robotique, range: (0.7, 0.8)
+2025-02-01 13:34:13.588 | INFO     | services.word_service:get_words_in_range:92 - Finding words for 'robotique' in range [0.7, 0.8]
+2025-02-01 13:34:13.913 | INFO     | services.word_service:get_words_in_range:117 - Found 0 words in the range.
+2025-02-01 13:34:13.919 | INFO     | services.game_service:use_joker:88 - Found 0 words using joker:
+2025-02-01 13:34:13.925 | INFO     | services.game_service:use_joker:96 - Remaining high_similarity jokers: 1
+2025-02-01 13:34:13.932 | INFO     | routes:use_joker:89 - Joker response:
+2025-02-01 13:34:13.938 | INFO     | routes:use_joker:90 - Words: []
+2025-02-01 13:34:13.944 | INFO     | routes:use_joker:91 - Remaining jokers: {'high_similarity': {'remaining': 1, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}
+2025-02-01 13:34:13.953 | INFO     | __main__:validate_routes:90 - Route /api/use-joker validation status: 200
+2025-02-01 13:34:13.962 | INFO     | routes:reset_game:29 - Game reset with new state: {'target_word': 'gestion', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:34:13.969 | INFO     | __main__:validate_routes:90 - Route /api/reset-game validation status: 200
+2025-02-01 13:34:13.974 | INFO     | __main__:<module>:96 - Starting Flask application in development mode
+2025-02-01 13:35:44.335 | INFO     | routes:get_game_state:106 - Retrieved game state: {'target_word': 'gestion', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:45:14.439 | INFO     | services.word_service:_initialize_model:29 - Loading FastText embeddings from URL...

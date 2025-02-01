@@ -10,6 +10,7 @@ __pycache__/
 *.so
 .Python
 env/
+venv/
 build/
 develop-eggs/
 dist/
@@ -32,20 +33,18 @@ var/
 # Production
 /build
 
-# Misc
-.DS_Store
+# Environment variables
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-.env
 
 # Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-*.vec
 
 # IDE specific files
 .idea/
@@ -53,8 +52,14 @@ yarn-error.log*
 *.swp
 *.swo
 
+# Model files
+backend/data/*.vec
+backend/data/*.bin
+backend/data/*.model
+*.vec
+
+# Temporary files
+*.tmp
+
 # Vercel
 .vercel
-# model
-"backend/data/cc.fr.300.reduced.vec" 
-"backend/data/cc.fr.300.reduced.vec" 

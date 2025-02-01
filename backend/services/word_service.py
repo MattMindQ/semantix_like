@@ -3,52 +3,77 @@ import numpy as np
 from typing import List, Dict
 import random
 from gensim.models import KeyedVectors
-
-from .model_downloader import download_model
 import os
+import tempfile
+import requests
 
 class WordEmbeddingService:
-    def __init__(self, model_path='data/cc.fr.300.reduced.vec'):
-        """
-        Initialize the service, downloading the model if needed.
-        """
+    _instance = None
+    _model = None
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(WordEmbeddingService, cls).__new__(cls)
+        return cls._instance
+
+    def __init__(self):
+        if not WordEmbeddingService._model:
+            self._initialize_model()
+    
+    def _initialize_model(self):
+        """Initialize the model only when needed"""
         try:
             # Get model URL from environment variable
             model_url = os.getenv('MODEL_URL', 'https://huggingface.co/Miroir/cc.fr.300.reduced/resolve/main/cc.fr.300.reduced.vec')
             
-            # Download model if it doesn't exist
-            download_model(model_url, model_path)
+            logger.info("Loading FastText embeddings from URL...")
             
-            # Rest of your initialization code...
-            logger.info("Loading FastText embeddings...")
-            self.model = KeyedVectors.load_word2vec_format(model_path)
+            # Create a temporary file to store the model
+            with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+                # Download the file
+                response = requests.get(model_url, stream=True)
+                response.raise_for_status()
+                
+                # Write the content to the temporary file
+                for chunk in response.iter_content(chunk_size=8192):
+                    if chunk:
+                        temp_file.write(chunk)
+                
+                temp_file.flush()
+                
+                # Load the model from the temporary file
+                WordEmbeddingService._model = KeyedVectors.load_word2vec_format(temp_file.name)
             
-            # Build a quick-access dictionary {word: vector}
+            # Build vocabulary vectors
             self.vocab_vectors = {
-                word: self.model[word]
-                for word in self.model.index_to_key
+                word: WordEmbeddingService._model[word]
+                for word in WordEmbeddingService._model.index_to_key
             }
+            
             logger.info(f"FastText model loaded successfully with "
                        f"{len(self.vocab_vectors)} words in the vocabulary.")
-        except Exception:
-            logger.exception("Failed to load FastText model from path: "
-                           f"{fasttext_path}")
+                       
+        except Exception as e:
+            logger.exception(f"Failed to load FastText model: {str(e)}")
             raise
 
+    def _ensure_model_loaded(self):
+        """Ensure the model is loaded before any operation"""
+        if not WordEmbeddingService._model:
+            self._initialize_model()
+
     def calculate_similarity(self, word1: str, word2: str) -> float:
-        """
-        Calculate semantic similarity between two words using FastText vectors.
-        Returns 0.0 if either word is missing from the vocabulary.
-        """
+        self._ensure_model_loaded()
         try:
             w1, w2 = word1.lower(), word2.lower()
-            if w1 not in self.model or w2 not in self.model:
+            if w1 not in WordEmbeddingService._model or w2 not in WordEmbeddingService._model:
                 logger.warning(f"One or both words not in FastText vocab: '{word1}', '{word2}'")
                 return 0.0
-            return float(self.model.similarity(w1, w2))
+            return float(WordEmbeddingService._model.similarity(w1, w2))
         except Exception:
             logger.exception(f"Error calculating similarity between '{word1}' and '{word2}'")
             return 0.0
+
 
     def get_vector(self, word: str) -> np.ndarray:
         """
