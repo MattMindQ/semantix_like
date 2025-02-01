@@ -1,10 +1,14 @@
 {
-  "buildCommand": "cd frontend && npm run build",
-  "outputDirectory": "frontend/dist",
+  "version": 2,
   "builds": [
     {
       "src": "backend/app.py",
       "use": "@vercel/python"
+    },
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
     }
   ],
   "routes": [
@@ -13,11 +17,11 @@
       "dest": "backend/app.py"
     },
     {
-      "handle": "filesystem"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/frontend/dist/$1"
+      "dest": "frontend/$1"
     }
-  ]
+  ],
+  "env": {
+    "MODEL_API_URL": "https://miroir-semantix-api.hf.space"
+  }
 }

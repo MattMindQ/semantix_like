@@ -1,100 +1,197 @@
-from flask import Flask
+# backend/app.py
+from flask import Flask, request, jsonify
 from flask_cors import CORS
-from flask import request
+import requests
 from loguru import logger
 import os
 import sys
-from services.word_service import WordEmbeddingService
-from services.game_service import GameService
-from services.visualization_service import VisualizationService
-from routes import register_routes
+import time
+from typing import Dict, Tuple
+app = Flask(__name__)
+CORS(app)
 
-def create_app(test_config=None):
-    app = Flask(__name__)
-    
-    # Configure CORS for all origins in production
-    CORS(app, resources={
-        r"/api/*": {
-            "origins": ["http://localhost:5173", "https://*.vercel.app", "https://*.now.sh"],
-            "methods": ["GET", "POST", "OPTIONS"],
-            "allow_headers": ["Content-Type"],
-        }
-    })
+# Configure logger
+logger.remove()
+logger.add(sys.stdout, level="INFO")
+if not os.getenv('VERCEL_ENV'):
+    logger.add("app.log", rotation="500 MB", level="INFO")
 
-    # Configure logger to work both locally and on Vercel
-    logger.remove()  # Remove default handler
-    logger.add(sys.stdout, level="INFO")  # Add stdout handler
-    if not os.getenv('VERCEL_ENV'):
-        # Add file logging only in local development
-        logger.add("app.log", rotation="500 MB", level="INFO")
+# Get the Model API URL from environment variables
+MODEL_API_URL = os.getenv('MODEL_API_URL', 'https://miroir-semantix-api.hf.space')
 
-    @app.after_request
-    def after_request(response):
-        # Allow requests from Vercel frontend
-        allowed_origins = [
-            'http://localhost:5173',  # Development
-            'https://*.vercel.app',   # Vercel deployment
-            'https://*.now.sh'        # Vercel deployment (alternative domain)
-        ]
-        origin = request.headers.get('Origin')
-        if origin in allowed_origins:
-            response.headers.add('Access-Control-Allow-Origin', origin)
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-        response.headers.add('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-        return response
 
+import os
+from urllib.parse import urlparse, urlunparse
+
+def get_local_api_url() -> str:
+    """Get the local API URL with correct port"""
+    return "http://localhost:8000"  # FastAPI development server port
+
+def is_local_url(url: str) -> bool:
+    """Check if URL is local (localhost or 127.0.0.1)"""
+    parsed = urlparse(url)
+    return parsed.hostname in ('localhost', '127.0.0.1', '0.0.0.0')
+
+def check_huggingface_connection() -> Tuple[bool, str, float]:
+    """
+    Check connection to Hugging Face service.
+    Falls back to local check if MODEL_API_URL is local.
+    Returns: (success, message, response_time)
+    """
     try:
-        # Initialize services
-        if test_config is None:
-            word_service = WordEmbeddingService()
-            game_service = GameService(word_service)
-            visualization_service = VisualizationService(word_service)
-            logger.info("Services initialized successfully")
-        else:
-            # Use test configuration
-            word_service = test_config.get('word_service')
-            game_service = test_config.get('game_service')
-            visualization_service = test_config.get('visualization_service')
-            logger.info("Test services initialized")
-
-        # Register routes with the services
-        register_routes(app, game_service, word_service, visualization_service)
+        start_time = time.time()
         
-        if not os.getenv('VERCEL_ENV'):
-            # Only run validation in development
-            validate_routes(app)
+        # Check if we're in local development
+        if is_local_url(MODEL_API_URL):
+            local_url = get_local_api_url()
+            logger.info(f"Local environment detected, checking FastAPI service at {local_url}")
+            try:
+                response = requests.get(f"{local_url}/")
+                response_time = time.time() - start_time
+                return True, "Connected to local FastAPI service", response_time
+            except requests.RequestException as e:
+                logger.warning(f"Local service not responding: {str(e)}")
+                return False, "Local FastAPI service not available", 0.0
+        
+        # Production Hugging Face check
+        api_url = f"{MODEL_API_URL}/api/health"
+        logger.info(f"Checking Hugging Face service at: {api_url}")
+        
+        response = requests.get(api_url)
+        response_time = time.time() - start_time
+        
+        if response.status_code == 200:
+            return True, "Connected to Hugging Face service", response_time
+        else:
+            return False, f"Hugging Face service returned status {response.status_code}", response_time
+            
+    except requests.RequestException as e:
+        logger.error(f"Connection error: {str(e)}")
+        return False, f"Failed to connect to service: {str(e)}", 0.0
 
-    except Exception as e:
-        logger.error(f"Failed to initialize services: {str(e)}")
-        raise e
-
-    return app
-
-def validate_routes(app):
-    """Validate all routes return something."""
-    with app.test_client() as client:
-        # Test GET endpoints
-        get_endpoints = ['/api/game-state', '/api/visualization']
-        for endpoint in get_endpoints:
-            response = client.get(endpoint)
-            logger.info(f"Route {endpoint} validation status: {response.status_code}")
-
-        # Test POST endpoints
-        post_endpoints = {
-            '/api/check-word': {'word': 'test'},
-            '/api/use-joker': {'joker_type': 'high_similarity'},
-            '/api/reset-game': {}
+@app.route('/api/system-health', methods=['GET'])
+def system_health():
+    """
+    Comprehensive health check endpoint with local environment support.
+    """
+    try:
+        actual_url = get_local_api_url() if is_local_url(MODEL_API_URL) else MODEL_API_URL
+        logger.info(f"Performing system health check for: {actual_url}")
+        
+        # Check service connection
+        healthy, message, response_time = check_huggingface_connection()
+        
+        # Determine environment
+        environment = "local" if is_local_url(MODEL_API_URL) else "production"
+        
+        health_status = {
+            "status": "healthy" if healthy else "degraded",
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "environment": environment,
+            "services": {
+                "proxy": {
+                    "status": "running",
+                    "message": "Proxy server is running"
+                },
+                "api": {
+                    "status": "healthy" if healthy else "error",
+                    "message": message,
+                    "response_time": f"{response_time:.3f}s",
+                    "endpoint": actual_url
+                }
+            }
         }
-        for endpoint, data in post_endpoints.items():
-            response = client.post(endpoint, json=data)
-            logger.info(f"Route {endpoint} validation status: {response.status_code}")
+        
+        logger.info(f"Health check results: {health_status}")
+        
+        # In local development, return 200 even if service is down
+        status_code = 200 if environment == "local" or healthy else 503
+        return jsonify(health_status), status_code
+        
+    except Exception as e:
+        error_response = {
+            "status": "error",
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "message": f"Health check failed: {str(e)}"
+        }
+        logger.exception("Health check failed")
+        return jsonify(error_response), 500
+    
+@app.route('/api/visualization', methods=['GET'])
+def get_visualization():
+    try:
+        response = requests.get(f"{MODEL_API_URL}/api/visualization")
+        return jsonify(response.json())
+    except Exception as e:
+        logger.exception("Error getting visualization")
+        return jsonify({'error': str(e)}), 500
 
-# Create the app instance
-app = create_app()
+@app.route('/api/reset-game', methods=['POST'])
+def reset_game():
+    try:
+        response = requests.post(f"{MODEL_API_URL}/api/reset-game")
+        return jsonify(response.json())
+    except Exception as e:
+        logger.exception("Error resetting game")
+        return jsonify({'error': str(e)}), 500
 
-if __name__ == '__main__':
-    logger.info("Starting Flask application in development mode")
-    app.run(debug=True)
+@app.route('/api/check-word', methods=['POST'])
+def check_word():
+    try:
+        data = request.get_json()
+        response = requests.post(f"{MODEL_API_URL}/api/check-word", json=data)
+        return jsonify(response.json())
+    except Exception as e:
+        logger.exception("Error checking word")
+        return jsonify({'error': str(e)}), 500
 
-# For Vercel deployment
-app = app.wsgi_app
+@app.route('/api/use-joker', methods=['POST', 'OPTIONS'])
+def use_joker():
+    if request.method == 'OPTIONS':
+        return '', 204
+    try:
+        data = request.get_json()
+        response = requests.post(f"{MODEL_API_URL}/api/use-joker", json=data)
+        return jsonify(response.json())
+    except Exception as e:
+        logger.exception("Error using joker")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/game-state', methods=['GET'])
+def get_game_state():
+    try:
+        logger.info(f"Fetching game state from {MODEL_API_URL}/api/game-state")
+        response = requests.get(f"{MODEL_API_URL}/api/game-state")
+        logger.info(f"Response status: {response.status_code}")
+        return jsonify(response.json())
+    except Exception as e:
+        logger.exception("Error getting game state")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/health', methods=['GET'])
+def health_check():
+    try:
+        response = requests.get(f"{MODEL_API_URL}/api/health")
+        return jsonify(response.json())
+    except Exception as e:
+        logger.exception("Error checking health")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/get-center-word', methods=['POST'])
+def get_center_word():
+    try:
+        data = request.get_json()
+        response = requests.post(f"{MODEL_API_URL}/api/get-center-word", json=data)
+        return jsonify(response.json())
+    except Exception as e:
+        logger.exception("Error getting center word")
+        return jsonify({'error': str(e)}), 500
+
+# Only use this for Vercel
+if os.getenv('VERCEL_ENV'):
+    app = app.wsgi_app
+else:
+    # For local development
+    if __name__ == '__main__':
+        logger.info(f"Starting Flask app with MODEL_API_URL: {MODEL_API_URL}")
+        app.run(host='0.0.0.0', port=5000, debug=True)

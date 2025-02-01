@@ -1,6 +1,6 @@
 // file location: src/main.ts
 
-import { checkWord, getGameState, getVisualizationData, resetGame, useJoker, getCenterWord } from './services/api';
+import { checkWord, getGameState, getVisualizationData, resetGame, useJoker, getCenterWord, checkSystemHealth } from './services/api';
 import { CenterWordResponse, GameResponse, GameState, JokerResponse } from './types';
 import { create3DVisualization } from './utils/visualization';
 import * as UI from './utils/ui-updates';
@@ -104,6 +104,11 @@ if (guessedWordsList) {
 }
 
 async function initGame() {
+    const servicesHealthy = await checkServices();
+    if (!servicesHealthy) {
+        return;
+    }
+    
     try {
         const state = await getGameState();
         gameState = state;
@@ -119,6 +124,25 @@ async function initGame() {
         initializeWordFilters();
     } catch (error) {
         console.error('Error initializing game:', error);
+    }
+}
+
+async function checkServices() {
+    try {
+        const health = await checkSystemHealth();
+        console.log('System health:', health);
+        
+        if (health.status !== 'healthy') {
+            // Show warning or error message to user
+            alert('Warning: Some services may be unavailable. ' + 
+                  health.services.huggingface.message);
+        }
+        
+        return health.status === 'healthy';
+    } catch (error) {
+        console.error('Health check failed:', error);
+        alert('Error: Unable to connect to game services. Please try again later.');
+        return false;
     }
 }
 

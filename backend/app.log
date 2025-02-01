@@ -424,3 +424,1181 @@ Traceback (most recent call last):
        └ 'vlog'
 
 AttributeError: 'WordEmbeddingService' object has no attribute 'model'
+2025-02-01 14:33:53.790 | INFO     | services.word_service:_initialize_model:29 - Loading FastText embeddings from URL...
+2025-02-01 14:35:11.509 | INFO     | services.word_service:_initialize_model:53 - FastText model loaded successfully with 50000 words in the vocabulary.
+2025-02-01 14:35:11.528 | INFO     | __main__:create_app:52 - Services initialized successfully
+2025-02-01 14:35:11.539 | INFO     | routes:get_game_state:106 - Retrieved game state: {'target_word': 'vlog', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 14:35:11.547 | INFO     | __main__:validate_routes:80 - Route /api/game-state validation status: 200
+2025-02-01 14:35:11.553 | ERROR    | services.word_service:get_vector:90 - Error getting vector for word: vlog
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 93, in <module>
+    app = create_app()
+          └ <function create_app at 0x000002558C82AAC0>
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 65, in create_app
+    validate_routes(app)
+    │               └ <Flask 'app'>
+    └ <function validate_routes at 0x00000255A3C28C20>
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 79, in validate_routes
+    response = client.get(endpoint)
+               │      │   └ '/api/visualization'
+               │      └ <function Client.get at 0x000002558F050540>
+               └ <FlaskClient <Flask 'app'>>
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1242, in get
+    return self.open(*args, **kw)
+           │    │     │       └ {'method': 'GET'}
+           │    │     └ ('/api/visualization',)
+           │    └ <function FlaskClient.open at 0x00000255A41F60C0>
+           └ <FlaskClient <Flask 'app'>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\testing.py", line 223, in open
+    response = super().open(
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1196, in open
+    response = self.run_wsgi_app(request.environ, buffered=buffered)
+               │    │            │       │                 └ False
+               │    │            │       └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+               │    │            └ <Request 'http://localhost/api/visualization' [GET]>
+               │    └ <function Client.run_wsgi_app at 0x000002558F050360>
+               └ <FlaskClient <Flask 'app'>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1068, in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         │            │    │            │                 └ False
+         │            │    │            └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+         │            │    └ <Flask 'app'>
+         │            └ <FlaskClient <Flask 'app'>>
+         └ <function run_wsgi_app at 0x000002558F050AE0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1344, in run_wsgi_app
+    app_rv = app(environ, start_response)
+             │   │        └ <function run_wsgi_app.<locals>.start_response at 0x00000255A41F45E0>
+             │   └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+             └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function run_wsgi_app.<locals>.start_response at 0x00000255A41F45E0>
+           │    │        └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+           │    └ <function Flask.wsgi_app at 0x000002558F2A2C00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x000002558F2A2020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x000002558F2A1F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'get_visualization'
+           │    │           │    │              └ <Rule '/api/visualization' (HEAD, GET, OPTIONS) -> get_visualization>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x00000255A42D91C0>, 'get_visualization': <function register_routes....
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x000002558F2A22A0>
+           └ <Flask 'app'>
+
+  File "C:\Users\DELL\semantix_like\backend\routes.py", line 15, in get_visualization
+    viz_data = visualization_service.prepare_3d_visualization(
+               │                     └ <function VisualizationService.prepare_3d_visualization at 0x00000255A42D8E00>
+               └ <services.visualization_service.VisualizationService object at 0x00000255A549BDD0>
+
+  File "C:\Users\DELL\semantix_like\backend\services\visualization_service.py", line 28, in prepare_3d_visualization
+    target_embedding = self.word_service.get_vector(target_word)
+                       │    │            │          └ 'vlog'
+                       │    │            └ <function WordEmbeddingService.get_vector at 0x00000255A05C71A0>
+                       │    └ <services.word_service.WordEmbeddingService object at 0x00000255A40AA6D0>
+                       └ <services.visualization_service.VisualizationService object at 0x00000255A549BDD0>
+
+> File "C:\Users\DELL\semantix_like\backend\services\word_service.py", line 85, in get_vector
+    if w not in self.model:
+       │        └ <services.word_service.WordEmbeddingService object at 0x00000255A40AA6D0>
+       └ 'vlog'
+
+AttributeError: 'WordEmbeddingService' object has no attribute 'model'
+2025-02-01 14:35:11.656 | INFO     | __main__:validate_routes:80 - Route /api/visualization validation status: 200
+2025-02-01 14:35:11.659 | WARNING  | services.word_service:calculate_similarity:70 - One or both words not in FastText vocab: 'vlog', 'test'
+2025-02-01 14:35:11.659 | INFO     | routes:check_word:65 - Word check response: {'error': "Le mot n'a pas été trouvé dans le dictionnaire", 'similarity': 0, 'history': []}
+2025-02-01 14:35:11.679 | INFO     | __main__:validate_routes:90 - Route /api/check-word validation status: 200
+2025-02-01 14:35:11.682 | INFO     | routes:use_joker:81 - Received joker request with type: high_similarity
+2025-02-01 14:35:11.685 | INFO     | services.game_service:use_joker:57 - Using joker of type: high_similarity
+2025-02-01 14:35:11.688 | INFO     | services.game_service:use_joker:77 - Target word: vlog, range: (0.7, 0.8)
+2025-02-01 14:35:11.691 | INFO     | services.word_service:get_words_in_range:117 - Finding words for 'vlog' in range [0.7, 0.8]
+2025-02-01 14:35:11.697 | ERROR    | services.word_service:get_vector:90 - Error getting vector for word: vlog
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 93, in <module>
+    app = create_app()
+          └ <function create_app at 0x000002558C82AAC0>
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 65, in create_app
+    validate_routes(app)
+    │               └ <Flask 'app'>
+    └ <function validate_routes at 0x00000255A3C28C20>
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 89, in validate_routes
+    response = client.post(endpoint, json=data)
+               │      │    │              └ {'joker_type': 'high_similarity'}
+               │      │    └ '/api/use-joker'
+               │      └ <function Client.post at 0x000002558F0505E0>
+               └ <FlaskClient <Flask 'app'>>
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1247, in post
+    return self.open(*args, **kw)
+           │    │     │       └ {'json': {'joker_type': 'high_similarity'}, 'method': 'POST'}
+           │    │     └ ('/api/use-joker',)
+           │    └ <function FlaskClient.open at 0x00000255A41F60C0>
+           └ <FlaskClient <Flask 'app'>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\testing.py", line 223, in open
+    response = super().open(
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1196, in open
+    response = self.run_wsgi_app(request.environ, buffered=buffered)
+               │    │            │       │                 └ False
+               │    │            │       └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+               │    │            └ <Request 'http://localhost/api/use-joker' [POST]>
+               │    └ <function Client.run_wsgi_app at 0x000002558F050360>
+               └ <FlaskClient <Flask 'app'>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1068, in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         │            │    │            │                 └ False
+         │            │    │            └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+         │            │    └ <Flask 'app'>
+         │            └ <FlaskClient <Flask 'app'>>
+         └ <function run_wsgi_app at 0x000002558F050AE0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1344, in run_wsgi_app
+    app_rv = app(environ, start_response)
+             │   │        └ <function run_wsgi_app.<locals>.start_response at 0x00000255A41F6520>
+             │   └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+             └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function run_wsgi_app.<locals>.start_response at 0x00000255A41F6520>
+           │    │        └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+           │    └ <function Flask.wsgi_app at 0x000002558F2A2C00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x000002558F2A2020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x000002558F2A1F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'use_joker'
+           │    │           │    │              └ <Rule '/api/use-joker' (POST, OPTIONS) -> use_joker>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x00000255A42D91C0>, 'get_visualization': <function register_routes....
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x000002558F2A22A0>
+           └ <Flask 'app'>
+
+  File "C:\Users\DELL\semantix_like\backend\routes.py", line 87, in use_joker
+    result = game_service.use_joker(joker_type)
+             │            │         └ 'high_similarity'
+             │            └ <function GameService.use_joker at 0x00000255A05E2700>
+             └ <services.game_service.GameService object at 0x00000255A415F890>
+
+  File "C:\Users\DELL\semantix_like\backend\services\game_service.py", line 80, in use_joker
+    similar_words = self.word_service.get_words_in_range(
+                    │    │            └ <function WordEmbeddingService.get_words_in_range at 0x00000255A05E0A40>
+                    │    └ <services.word_service.WordEmbeddingService object at 0x00000255A40AA6D0>
+                    └ <services.game_service.GameService object at 0x00000255A415F890>
+
+  File "C:\Users\DELL\semantix_like\backend\services\word_service.py", line 119, in get_words_in_range
+    target_vec = self.get_vector(target_word)
+                 │    │          └ 'vlog'
+                 │    └ <function WordEmbeddingService.get_vector at 0x00000255A05C71A0>
+                 └ <services.word_service.WordEmbeddingService object at 0x00000255A40AA6D0>
+
+> File "C:\Users\DELL\semantix_like\backend\services\word_service.py", line 85, in get_vector
+    if w not in self.model:
+       │        └ <services.word_service.WordEmbeddingService object at 0x00000255A40AA6D0>
+       └ 'vlog'
+
+AttributeError: 'WordEmbeddingService' object has no attribute 'model'
+2025-02-01 14:35:11.789 | WARNING  | services.word_service:get_words_in_range:121 - No vector for target word: vlog
+2025-02-01 14:35:11.794 | INFO     | services.game_service:use_joker:88 - Found 0 words using joker:
+2025-02-01 14:35:11.798 | INFO     | services.game_service:use_joker:96 - Remaining high_similarity jokers: 1
+2025-02-01 14:35:11.800 | INFO     | routes:use_joker:89 - Joker response:
+2025-02-01 14:35:11.802 | INFO     | routes:use_joker:90 - Words: []
+2025-02-01 14:35:11.805 | INFO     | routes:use_joker:91 - Remaining jokers: {'high_similarity': {'remaining': 1, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}
+2025-02-01 14:35:11.808 | INFO     | __main__:validate_routes:90 - Route /api/use-joker validation status: 200
+2025-02-01 14:35:11.809 | INFO     | routes:reset_game:29 - Game reset with new state: {'target_word': 'dope', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 14:35:11.809 | INFO     | __main__:validate_routes:90 - Route /api/reset-game validation status: 200
+2025-02-01 14:35:11.809 | INFO     | __main__:<module>:96 - Starting Flask application in development mode
+2025-02-01 14:40:28.043 | INFO     | services.word_service:_initialize_model:29 - Loading FastText embeddings from URL...
+2025-02-01 14:42:03.121 | INFO     | services.word_service:_initialize_model:53 - FastText model loaded successfully with 50000 words in the vocabulary.
+2025-02-01 14:42:03.126 | INFO     | __main__:create_app:52 - Services initialized successfully
+2025-02-01 14:42:03.137 | INFO     | routes:get_game_state:106 - Retrieved game state: {'target_word': 'dope', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 14:42:03.142 | INFO     | __main__:validate_routes:80 - Route /api/game-state validation status: 200
+2025-02-01 14:42:03.149 | ERROR    | services.word_service:get_vector:90 - Error getting vector for word: dope
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 93, in <module>
+    app = create_app()
+          └ <function create_app at 0x000001CBED98AAC0>
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 65, in create_app
+    validate_routes(app)
+    │               └ <Flask 'app'>
+    └ <function validate_routes at 0x000001CB84DE8C20>
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 79, in validate_routes
+    response = client.get(endpoint)
+               │      │   └ '/api/visualization'
+               │      └ <function Client.get at 0x000001CBF0180540>
+               └ <FlaskClient <Flask 'app'>>
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1242, in get
+    return self.open(*args, **kw)
+           │    │     │       └ {'method': 'GET'}
+           │    │     └ ('/api/visualization',)
+           │    └ <function FlaskClient.open at 0x000001CB853D60C0>
+           └ <FlaskClient <Flask 'app'>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\testing.py", line 223, in open
+    response = super().open(
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1196, in open
+    response = self.run_wsgi_app(request.environ, buffered=buffered)
+               │    │            │       │                 └ False
+               │    │            │       └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+               │    │            └ <Request 'http://localhost/api/visualization' [GET]>
+               │    └ <function Client.run_wsgi_app at 0x000001CBF0180360>
+               └ <FlaskClient <Flask 'app'>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1068, in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         │            │    │            │                 └ False
+         │            │    │            └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+         │            │    └ <Flask 'app'>
+         │            └ <FlaskClient <Flask 'app'>>
+         └ <function run_wsgi_app at 0x000001CBF0180AE0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1344, in run_wsgi_app
+    app_rv = app(environ, start_response)
+             │   │        └ <function run_wsgi_app.<locals>.start_response at 0x000001CB853D45E0>
+             │   └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+             └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function run_wsgi_app.<locals>.start_response at 0x000001CB853D45E0>
+           │    │        └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+           │    └ <function Flask.wsgi_app at 0x000001CBF03D2C00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x000001CBF03D2020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x000001CBF03D1F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'get_visualization'
+           │    │           │    │              └ <Rule '/api/visualization' (GET, HEAD, OPTIONS) -> get_visualization>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x000001CB854D91C0>, 'get_visualization': <function register_routes....
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x000001CBF03D22A0>
+           └ <Flask 'app'>
+
+  File "C:\Users\DELL\semantix_like\backend\routes.py", line 15, in get_visualization
+    viz_data = visualization_service.prepare_3d_visualization(
+               │                     └ <function VisualizationService.prepare_3d_visualization at 0x000001CB854D8E00>
+               └ <services.visualization_service.VisualizationService object at 0x000001CB866D0E90>
+
+  File "C:\Users\DELL\semantix_like\backend\services\visualization_service.py", line 28, in prepare_3d_visualization
+    target_embedding = self.word_service.get_vector(target_word)
+                       │    │            │          └ 'dope'
+                       │    │            └ <function WordEmbeddingService.get_vector at 0x000001CB817471A0>
+                       │    └ <services.word_service.WordEmbeddingService object at 0x000001CB852E86D0>
+                       └ <services.visualization_service.VisualizationService object at 0x000001CB866D0E90>
+
+> File "C:\Users\DELL\semantix_like\backend\services\word_service.py", line 85, in get_vector
+    if w not in self.model:
+       │        └ <services.word_service.WordEmbeddingService object at 0x000001CB852E86D0>
+       └ 'dope'
+
+AttributeError: 'WordEmbeddingService' object has no attribute 'model'
+2025-02-01 14:42:03.238 | INFO     | __main__:validate_routes:80 - Route /api/visualization validation status: 200
+2025-02-01 14:42:03.243 | WARNING  | services.word_service:calculate_similarity:70 - One or both words not in FastText vocab: 'dope', 'test'
+2025-02-01 14:42:03.250 | INFO     | routes:check_word:65 - Word check response: {'error': "Le mot n'a pas été trouvé dans le dictionnaire", 'similarity': 0, 'history': []}
+2025-02-01 14:42:03.255 | INFO     | __main__:validate_routes:90 - Route /api/check-word validation status: 200
+2025-02-01 14:42:03.259 | INFO     | routes:use_joker:81 - Received joker request with type: high_similarity
+2025-02-01 14:42:03.262 | INFO     | services.game_service:use_joker:57 - Using joker of type: high_similarity
+2025-02-01 14:42:03.268 | INFO     | services.game_service:use_joker:77 - Target word: dope, range: (0.7, 0.8)
+2025-02-01 14:42:03.271 | INFO     | services.word_service:get_words_in_range:117 - Finding words for 'dope' in range [0.7, 0.8]
+2025-02-01 14:42:03.274 | ERROR    | services.word_service:get_vector:90 - Error getting vector for word: dope
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 93, in <module>
+    app = create_app()
+          └ <function create_app at 0x000001CBED98AAC0>
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 65, in create_app
+    validate_routes(app)
+    │               └ <Flask 'app'>
+    └ <function validate_routes at 0x000001CB84DE8C20>
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 89, in validate_routes
+    response = client.post(endpoint, json=data)
+               │      │    │              └ {'joker_type': 'high_similarity'}
+               │      │    └ '/api/use-joker'
+               │      └ <function Client.post at 0x000001CBF01805E0>
+               └ <FlaskClient <Flask 'app'>>
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1247, in post
+    return self.open(*args, **kw)
+           │    │     │       └ {'json': {'joker_type': 'high_similarity'}, 'method': 'POST'}
+           │    │     └ ('/api/use-joker',)
+           │    └ <function FlaskClient.open at 0x000001CB853D60C0>
+           └ <FlaskClient <Flask 'app'>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\testing.py", line 223, in open
+    response = super().open(
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1196, in open
+    response = self.run_wsgi_app(request.environ, buffered=buffered)
+               │    │            │       │                 └ False
+               │    │            │       └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+               │    │            └ <Request 'http://localhost/api/use-joker' [POST]>
+               │    └ <function Client.run_wsgi_app at 0x000001CBF0180360>
+               └ <FlaskClient <Flask 'app'>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1068, in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         │            │    │            │                 └ False
+         │            │    │            └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+         │            │    └ <Flask 'app'>
+         │            └ <FlaskClient <Flask 'app'>>
+         └ <function run_wsgi_app at 0x000001CBF0180AE0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1344, in run_wsgi_app
+    app_rv = app(environ, start_response)
+             │   │        └ <function run_wsgi_app.<locals>.start_response at 0x000001CB853D6520>
+             │   └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+             └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function run_wsgi_app.<locals>.start_response at 0x000001CB853D6520>
+           │    │        └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+           │    └ <function Flask.wsgi_app at 0x000001CBF03D2C00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x000001CBF03D2020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x000001CBF03D1F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'use_joker'
+           │    │           │    │              └ <Rule '/api/use-joker' (POST, OPTIONS) -> use_joker>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x000001CB854D91C0>, 'get_visualization': <function register_routes....
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x000001CBF03D22A0>
+           └ <Flask 'app'>
+
+  File "C:\Users\DELL\semantix_like\backend\routes.py", line 87, in use_joker
+    result = game_service.use_joker(joker_type)
+             │            │         └ 'high_similarity'
+             │            └ <function GameService.use_joker at 0x000001CB81766700>
+             └ <services.game_service.GameService object at 0x000001CB86531890>
+
+  File "C:\Users\DELL\semantix_like\backend\services\game_service.py", line 80, in use_joker
+    similar_words = self.word_service.get_words_in_range(
+                    │    │            └ <function WordEmbeddingService.get_words_in_range at 0x000001CB81764A40>
+                    │    └ <services.word_service.WordEmbeddingService object at 0x000001CB852E86D0>
+                    └ <services.game_service.GameService object at 0x000001CB86531890>
+
+  File "C:\Users\DELL\semantix_like\backend\services\word_service.py", line 119, in get_words_in_range
+    target_vec = self.get_vector(target_word)
+                 │    │          └ 'dope'
+                 │    └ <function WordEmbeddingService.get_vector at 0x000001CB817471A0>
+                 └ <services.word_service.WordEmbeddingService object at 0x000001CB852E86D0>
+
+> File "C:\Users\DELL\semantix_like\backend\services\word_service.py", line 85, in get_vector
+    if w not in self.model:
+       │        └ <services.word_service.WordEmbeddingService object at 0x000001CB852E86D0>
+       └ 'dope'
+
+AttributeError: 'WordEmbeddingService' object has no attribute 'model'
+2025-02-01 14:42:03.377 | WARNING  | services.word_service:get_words_in_range:121 - No vector for target word: dope
+2025-02-01 14:42:03.418 | INFO     | services.game_service:use_joker:88 - Found 0 words using joker:
+2025-02-01 14:42:03.437 | INFO     | services.game_service:use_joker:96 - Remaining high_similarity jokers: 1
+2025-02-01 14:42:03.439 | INFO     | routes:use_joker:89 - Joker response:
+2025-02-01 14:42:03.442 | INFO     | routes:use_joker:90 - Words: []
+2025-02-01 14:42:03.444 | INFO     | routes:use_joker:91 - Remaining jokers: {'high_similarity': {'remaining': 1, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}
+2025-02-01 14:42:03.451 | INFO     | __main__:validate_routes:90 - Route /api/use-joker validation status: 200
+2025-02-01 14:42:03.457 | INFO     | routes:reset_game:29 - Game reset with new state: {'target_word': 'clandestin', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 14:42:03.460 | INFO     | __main__:validate_routes:90 - Route /api/reset-game validation status: 200
+2025-02-01 14:42:03.465 | INFO     | __main__:<module>:96 - Starting Flask application in development mode
+2025-02-01 14:42:03.868 | INFO     | routes:check_word:65 - Word check response: {'similarity': 0.11460769921541214, 'history': [{'word': 'maison', 'similarity': 0.11460769921541214}], 'word_found': False, 'similar_words': []}
+2025-02-01 14:42:04.200 | ERROR    | services.word_service:get_vector:90 - Error getting vector for word: clandestin
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 995, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000001CBEF8198A0>
+    └ <Thread(Thread-12 (process_request_thread), started daemon 13696)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000001CBEF819580>
+    └ <Thread(Thread-12 (process_request_thread), started daemon 13696)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-12 (process_request_thread), started daemon 13696)>
+    │    │        │    └ (<socket.socket fd=3984, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 49743)>, ('127.0.0.1', 497...
+    │    │        └ <Thread(Thread-12 (process_request_thread), started daemon 13696)>
+    │    └ <bound method ThreadingMixIn.process_request_thread of <werkzeug.serving.ThreadedWSGIServer object at 0x000001CB8AF9E7D0>>
+    └ <Thread(Thread-12 (process_request_thread), started daemon 13696)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 691, in process_request_thread
+    self.finish_request(request, client_address)
+    │    │              │        └ ('127.0.0.1', 49743)
+    │    │              └ <socket.socket fd=3984, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 49743)>
+    │    └ <function BaseServer.finish_request at 0x000001CBEFD689A0>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x000001CB8AF9E7D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 361, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    │    │                   │        │               └ <werkzeug.serving.ThreadedWSGIServer object at 0x000001CB8AF9E7D0>
+    │    │                   │        └ ('127.0.0.1', 49743)
+    │    │                   └ <socket.socket fd=3984, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 49743)>
+    │    └ <class 'werkzeug.serving.WSGIRequestHandler'>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x000001CB8AF9E7D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 755, in __init__
+    self.handle()
+    │    └ <function WSGIRequestHandler.handle at 0x000001CBF00ABEC0>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x000001CB8B0486D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 392, in handle
+    super().handle()
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 432, in handle
+    self.handle_one_request()
+    │    └ <function BaseHTTPRequestHandler.handle_one_request at 0x000001CBEFF53740>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x000001CB8B0486D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 420, in handle_one_request
+    method()
+    └ <bound method WSGIRequestHandler.run_wsgi of <werkzeug.serving.WSGIRequestHandler object at 0x000001CB8B0486D0>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+    │       │    │      └ <werkzeug.debug.DebuggedApplication object at 0x000001CB8513BAD0>
+    │       │    └ <werkzeug.serving.ThreadedWSGIServer object at 0x000001CB8AF9E7D0>
+    │       └ <werkzeug.serving.WSGIRequestHandler object at 0x000001CB8B0486D0>
+    └ <function WSGIRequestHandler.run_wsgi.<locals>.execute at 0x000001CB8B037EC0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 327, in execute
+    for data in application_iter:
+                └ <generator object DebuggedApplication.debug_application at 0x000001CB8B024CC0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\debug\__init__.py", line 330, in debug_application
+    app_iter = self.app(environ, start_response)
+               │    │   │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x000001CB8B037060>
+               │    │   └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=3984>, 'wsgi.errors': <_io.TextIOW...
+               │    └ <Flask 'app'>
+               └ <werkzeug.debug.DebuggedApplication object at 0x000001CB8513BAD0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x000001CB8B037060>
+           │    │        └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=3984>, 'wsgi.errors': <_io.TextIOW...
+           │    └ <function Flask.wsgi_app at 0x000001CBF03D2C00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x000001CBF03D2020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x000001CBF03D1F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'get_visualization'
+           │    │           │    │              └ <Rule '/api/visualization' (GET, HEAD, OPTIONS) -> get_visualization>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x000001CB854D91C0>, 'get_visualization': <function register_routes....
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x000001CBF03D22A0>
+           └ <Flask 'app'>
+
+  File "C:\Users\DELL\semantix_like\backend\routes.py", line 15, in get_visualization
+    viz_data = visualization_service.prepare_3d_visualization(
+               │                     └ <function VisualizationService.prepare_3d_visualization at 0x000001CB854D8E00>
+               └ <services.visualization_service.VisualizationService object at 0x000001CB866D0E90>
+
+  File "C:\Users\DELL\semantix_like\backend\services\visualization_service.py", line 28, in prepare_3d_visualization
+    target_embedding = self.word_service.get_vector(target_word)
+                       │    │            │          └ 'clandestin'
+                       │    │            └ <function WordEmbeddingService.get_vector at 0x000001CB817471A0>
+                       │    └ <services.word_service.WordEmbeddingService object at 0x000001CB852E86D0>
+                       └ <services.visualization_service.VisualizationService object at 0x000001CB866D0E90>
+
+> File "C:\Users\DELL\semantix_like\backend\services\word_service.py", line 85, in get_vector
+    if w not in self.model:
+       │        └ <services.word_service.WordEmbeddingService object at 0x000001CB852E86D0>
+       └ 'clandestin'
+
+AttributeError: 'WordEmbeddingService' object has no attribute 'model'
+2025-02-01 15:28:42.700 | INFO     | __main__:<module>:97 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 15:28:43.983 | INFO     | __main__:<module>:97 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 15:29:03.441 | INFO     | __main__:get_game_state:64 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 15:29:03.943 | INFO     | __main__:get_game_state:66 - Response status: 404
+2025-02-01 15:29:03.948 | ERROR    | __main__:get_game_state:69 - Error getting game state
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\models.py", line 974, in json
+    return complexjson.loads(self.text, **kwargs)
+           │           │     │    │       └ {}
+           │           │     │    └ <property object at 0x000001E70F0EBD30>
+           │           │     └ <Response [404]>
+           │           └ <function loads at 0x000001E70C04E0C0>
+           └ <module 'json' from 'C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\json\\__init__.py'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           │                │      └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+           │                └ <function JSONDecoder.decode at 0x000001E70C04D940>
+           └ <json.decoder.JSONDecoder object at 0x000001E70B8E25D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               │    │          │      │  └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+               │    │          │      └ <built-in method match of re.Pattern object at 0x000001E70C041560>
+               │    │          └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+               │    └ <function JSONDecoder.raw_decode at 0x000001E70C04D9E0>
+               └ <json.decoder.JSONDecoder object at 0x000001E70B8E25D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+          │                                  └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+          └ <class 'json.decoder.JSONDecodeError'>
+
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 995, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000001E70D9AD8A0>
+    └ <Thread(Thread-9 (process_request_thread), started daemon 6064)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000001E70D9AD580>
+    └ <Thread(Thread-9 (process_request_thread), started daemon 6064)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-9 (process_request_thread), started daemon 6064)>
+    │    │        │    └ (<socket.socket fd=780, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 50944)>, ('127.0.0.1', 50944))
+    │    │        └ <Thread(Thread-9 (process_request_thread), started daemon 6064)>
+    │    └ <bound method ThreadingMixIn.process_request_thread of <werkzeug.serving.ThreadedWSGIServer object at 0x000001E710F7D9D0>>
+    └ <Thread(Thread-9 (process_request_thread), started daemon 6064)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 691, in process_request_thread
+    self.finish_request(request, client_address)
+    │    │              │        └ ('127.0.0.1', 50944)
+    │    │              └ <socket.socket fd=780, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 50944)>
+    │    └ <function BaseServer.finish_request at 0x000001E70DEF89A0>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x000001E710F7D9D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 361, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    │    │                   │        │               └ <werkzeug.serving.ThreadedWSGIServer object at 0x000001E710F7D9D0>
+    │    │                   │        └ ('127.0.0.1', 50944)
+    │    │                   └ <socket.socket fd=780, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 50944)>
+    │    └ <class 'werkzeug.serving.WSGIRequestHandler'>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x000001E710F7D9D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 755, in __init__
+    self.handle()
+    │    └ <function WSGIRequestHandler.handle at 0x000001E70E20BEC0>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x000001E711384590>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 392, in handle
+    super().handle()
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 432, in handle
+    self.handle_one_request()
+    │    └ <function BaseHTTPRequestHandler.handle_one_request at 0x000001E70E0BF740>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x000001E711384590>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 420, in handle_one_request
+    method()
+    └ <bound method WSGIRequestHandler.run_wsgi of <werkzeug.serving.WSGIRequestHandler object at 0x000001E711384590>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+    │       │    │      └ <werkzeug.debug.DebuggedApplication object at 0x000001E711311FD0>
+    │       │    └ <werkzeug.serving.ThreadedWSGIServer object at 0x000001E710F7D9D0>
+    │       └ <werkzeug.serving.WSGIRequestHandler object at 0x000001E711384590>
+    └ <function WSGIRequestHandler.run_wsgi.<locals>.execute at 0x000001E71138C400>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 327, in execute
+    for data in application_iter:
+                └ <generator object DebuggedApplication.debug_application at 0x000001E711329440>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\debug\__init__.py", line 330, in debug_application
+    app_iter = self.app(environ, start_response)
+               │    │   │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x000001E71138C2C0>
+               │    │   └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=780>, 'wsgi.errors': <_io.TextIOWr...
+               │    └ <Flask 'app'>
+               └ <werkzeug.debug.DebuggedApplication object at 0x000001E711311FD0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x000001E71138C2C0>
+           │    │        └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=780>, 'wsgi.errors': <_io.TextIOWr...
+           │    └ <function Flask.wsgi_app at 0x000001E70E53AC00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x000001E70E53A020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x000001E70E539F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'get_game_state'
+           │    │           │    │              └ <Rule '/api/game-state' (HEAD, OPTIONS, GET) -> get_game_state>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x000001E70F0679C0>, 'get_visualization': <function get_visualizatio...
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x000001E70E53A2A0>
+           └ <Flask 'app'>
+
+> File "C:\Users\DELL\semantix_like\backend\app.py", line 67, in get_game_state
+    return jsonify(response.json())
+           │       │        └ <function Response.json at 0x000001E70F0FDD00>
+           │       └ <Response [404]>
+           └ <function jsonify at 0x000001E70E3222A0>
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\models.py", line 978, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+          └ <class 'requests.exceptions.JSONDecodeError'>
+
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-02-01 15:29:05.940 | INFO     | __main__:<module>:97 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 15:29:07.365 | INFO     | __main__:get_game_state:64 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 15:29:07.678 | INFO     | __main__:get_game_state:66 - Response status: 404
+2025-02-01 15:29:07.683 | ERROR    | __main__:get_game_state:69 - Error getting game state
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\models.py", line 974, in json
+    return complexjson.loads(self.text, **kwargs)
+           │           │     │    │       └ {}
+           │           │     │    └ <property object at 0x0000022332EC7E70>
+           │           │     └ <Response [404]>
+           │           └ <function loads at 0x000002232FD8E0C0>
+           └ <module 'json' from 'C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\json\\__init__.py'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           │                │      └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+           │                └ <function JSONDecoder.decode at 0x000002232FD8D940>
+           └ <json.decoder.JSONDecoder object at 0x000002232F6325D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               │    │          │      │  └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+               │    │          │      └ <built-in method match of re.Pattern object at 0x000002232FD81560>
+               │    │          └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+               │    └ <function JSONDecoder.raw_decode at 0x000002232FD8D9E0>
+               └ <json.decoder.JSONDecoder object at 0x000002232F6325D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+          │                                  └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+          └ <class 'json.decoder.JSONDecodeError'>
+
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 995, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002233175D8A0>
+    └ <Thread(Thread-9 (process_request_thread), started daemon 7948)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000002233175D580>
+    └ <Thread(Thread-9 (process_request_thread), started daemon 7948)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-9 (process_request_thread), started daemon 7948)>
+    │    │        │    └ (<socket.socket fd=932, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 50998)>, ('127.0.0.1', 50998))
+    │    │        └ <Thread(Thread-9 (process_request_thread), started daemon 7948)>
+    │    └ <bound method ThreadingMixIn.process_request_thread of <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>>
+    └ <Thread(Thread-9 (process_request_thread), started daemon 7948)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 691, in process_request_thread
+    self.finish_request(request, client_address)
+    │    │              │        └ ('127.0.0.1', 50998)
+    │    │              └ <socket.socket fd=932, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 50998)>
+    │    └ <function BaseServer.finish_request at 0x00000223318A89A0>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 361, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    │    │                   │        │               └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+    │    │                   │        └ ('127.0.0.1', 50998)
+    │    │                   └ <socket.socket fd=932, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 50998)>
+    │    └ <class 'werkzeug.serving.WSGIRequestHandler'>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 755, in __init__
+    self.handle()
+    │    └ <function WSGIRequestHandler.handle at 0x0000022331FEBEC0>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x0000022335157B90>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 392, in handle
+    super().handle()
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 432, in handle
+    self.handle_one_request()
+    │    └ <function BaseHTTPRequestHandler.handle_one_request at 0x0000022331E8F740>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x0000022335157B90>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 420, in handle_one_request
+    method()
+    └ <bound method WSGIRequestHandler.run_wsgi of <werkzeug.serving.WSGIRequestHandler object at 0x0000022335157B90>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+    │       │    │      └ <werkzeug.debug.DebuggedApplication object at 0x00000223350F2010>
+    │       │    └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+    │       └ <werkzeug.serving.WSGIRequestHandler object at 0x0000022335157B90>
+    └ <function WSGIRequestHandler.run_wsgi.<locals>.execute at 0x000002233514B7E0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 327, in execute
+    for data in application_iter:
+                └ <generator object DebuggedApplication.debug_application at 0x0000022335109440>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\debug\__init__.py", line 330, in debug_application
+    app_iter = self.app(environ, start_response)
+               │    │   │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x000002233514B380>
+               │    │   └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=932>, 'wsgi.errors': <_io.TextIOWr...
+               │    └ <Flask 'app'>
+               └ <werkzeug.debug.DebuggedApplication object at 0x00000223350F2010>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x000002233514B380>
+           │    │        └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=932>, 'wsgi.errors': <_io.TextIOWr...
+           │    └ <function Flask.wsgi_app at 0x000002233231AC00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x000002233231A020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x0000022332319F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'get_game_state'
+           │    │           │    │              └ <Rule '/api/game-state' (HEAD, GET, OPTIONS) -> get_game_state>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x0000022332E479C0>, 'get_visualization': <function get_visualizatio...
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x000002233231A2A0>
+           └ <Flask 'app'>
+
+> File "C:\Users\DELL\semantix_like\backend\app.py", line 67, in get_game_state
+    return jsonify(response.json())
+           │       │        └ <function Response.json at 0x0000022332EDDD00>
+           │       └ <Response [404]>
+           └ <function jsonify at 0x00000223321022A0>
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\models.py", line 978, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+          └ <class 'requests.exceptions.JSONDecodeError'>
+
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-02-01 15:29:10.558 | ERROR    | __main__:check_word:46 - Error checking word
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\models.py", line 974, in json
+    return complexjson.loads(self.text, **kwargs)
+           │           │     │    │       └ {}
+           │           │     │    └ <property object at 0x0000022332EC7E70>
+           │           │     └ <Response [404]>
+           │           └ <function loads at 0x000002232FD8E0C0>
+           └ <module 'json' from 'C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\json\\__init__.py'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           │                │      └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+           │                └ <function JSONDecoder.decode at 0x000002232FD8D940>
+           └ <json.decoder.JSONDecoder object at 0x000002232F6325D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               │    │          │      │  └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+               │    │          │      └ <built-in method match of re.Pattern object at 0x000002232FD81560>
+               │    │          └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+               │    └ <function JSONDecoder.raw_decode at 0x000002232FD8D9E0>
+               └ <json.decoder.JSONDecoder object at 0x000002232F6325D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+          │                                  └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+          └ <class 'json.decoder.JSONDecodeError'>
+
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 995, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002233175D8A0>
+    └ <Thread(Thread-11 (process_request_thread), started daemon 12148)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000002233175D580>
+    └ <Thread(Thread-11 (process_request_thread), started daemon 12148)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-11 (process_request_thread), started daemon 12148)>
+    │    │        │    └ (<socket.socket fd=1044, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 51036)>, ('127.0.0.1', 510...
+    │    │        └ <Thread(Thread-11 (process_request_thread), started daemon 12148)>
+    │    └ <bound method ThreadingMixIn.process_request_thread of <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>>
+    └ <Thread(Thread-11 (process_request_thread), started daemon 12148)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 691, in process_request_thread
+    self.finish_request(request, client_address)
+    │    │              │        └ ('127.0.0.1', 51036)
+    │    │              └ <socket.socket fd=1044, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 51036)>
+    │    └ <function BaseServer.finish_request at 0x00000223318A89A0>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 361, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    │    │                   │        │               └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+    │    │                   │        └ ('127.0.0.1', 51036)
+    │    │                   └ <socket.socket fd=1044, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 51036)>
+    │    └ <class 'werkzeug.serving.WSGIRequestHandler'>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 755, in __init__
+    self.handle()
+    │    └ <function WSGIRequestHandler.handle at 0x0000022331FEBEC0>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x0000022335170B50>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 392, in handle
+    super().handle()
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 432, in handle
+    self.handle_one_request()
+    │    └ <function BaseHTTPRequestHandler.handle_one_request at 0x0000022331E8F740>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x0000022335170B50>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 420, in handle_one_request
+    method()
+    └ <bound method WSGIRequestHandler.run_wsgi of <werkzeug.serving.WSGIRequestHandler object at 0x0000022335170B50>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+    │       │    │      └ <werkzeug.debug.DebuggedApplication object at 0x00000223350F2010>
+    │       │    └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+    │       └ <werkzeug.serving.WSGIRequestHandler object at 0x0000022335170B50>
+    └ <function WSGIRequestHandler.run_wsgi.<locals>.execute at 0x000002233516CB80>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 327, in execute
+    for data in application_iter:
+                └ <generator object DebuggedApplication.debug_application at 0x0000022335109440>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\debug\__init__.py", line 330, in debug_application
+    app_iter = self.app(environ, start_response)
+               │    │   │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x000002233516CAE0>
+               │    │   └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=1044>, 'wsgi.errors': <_io.TextIOW...
+               │    └ <Flask 'app'>
+               └ <werkzeug.debug.DebuggedApplication object at 0x00000223350F2010>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x000002233516CAE0>
+           │    │        └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=1044>, 'wsgi.errors': <_io.TextIOW...
+           │    └ <function Flask.wsgi_app at 0x000002233231AC00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x000002233231A020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x0000022332319F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'check_word'
+           │    │           │    │              └ <Rule '/api/check-word' (POST, OPTIONS) -> check_word>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x0000022332E479C0>, 'get_visualization': <function get_visualizatio...
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x000002233231A2A0>
+           └ <Flask 'app'>
+
+> File "C:\Users\DELL\semantix_like\backend\app.py", line 44, in check_word
+    return jsonify(response.json())
+           │       │        └ <function Response.json at 0x0000022332EDDD00>
+           │       └ <Response [404]>
+           └ <function jsonify at 0x00000223321022A0>
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\models.py", line 978, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+          └ <class 'requests.exceptions.JSONDecodeError'>
+
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-02-01 15:29:11.748 | ERROR    | __main__:check_word:46 - Error checking word
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\models.py", line 974, in json
+    return complexjson.loads(self.text, **kwargs)
+           │           │     │    │       └ {}
+           │           │     │    └ <property object at 0x0000022332EC7E70>
+           │           │     └ <Response [404]>
+           │           └ <function loads at 0x000002232FD8E0C0>
+           └ <module 'json' from 'C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\json\\__init__.py'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           │                │      └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+           │                └ <function JSONDecoder.decode at 0x000002232FD8D940>
+           └ <json.decoder.JSONDecoder object at 0x000002232F6325D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               │    │          │      │  └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+               │    │          │      └ <built-in method match of re.Pattern object at 0x000002232FD81560>
+               │    │          └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+               │    └ <function JSONDecoder.raw_decode at 0x000002232FD8D9E0>
+               └ <json.decoder.JSONDecoder object at 0x000002232F6325D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+          │                                  └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+          └ <class 'json.decoder.JSONDecodeError'>
+
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 995, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002233175D8A0>
+    └ <Thread(Thread-12 (process_request_thread), started daemon 2736)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000002233175D580>
+    └ <Thread(Thread-12 (process_request_thread), started daemon 2736)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-12 (process_request_thread), started daemon 2736)>
+    │    │        │    └ (<socket.socket fd=1068, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 51042)>, ('127.0.0.1', 510...
+    │    │        └ <Thread(Thread-12 (process_request_thread), started daemon 2736)>
+    │    └ <bound method ThreadingMixIn.process_request_thread of <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>>
+    └ <Thread(Thread-12 (process_request_thread), started daemon 2736)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 691, in process_request_thread
+    self.finish_request(request, client_address)
+    │    │              │        └ ('127.0.0.1', 51042)
+    │    │              └ <socket.socket fd=1068, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 51042)>
+    │    └ <function BaseServer.finish_request at 0x00000223318A89A0>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 361, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    │    │                   │        │               └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+    │    │                   │        └ ('127.0.0.1', 51042)
+    │    │                   └ <socket.socket fd=1068, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 51042)>
+    │    └ <class 'werkzeug.serving.WSGIRequestHandler'>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 755, in __init__
+    self.handle()
+    │    └ <function WSGIRequestHandler.handle at 0x0000022331FEBEC0>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x00000223352D7850>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 392, in handle
+    super().handle()
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 432, in handle
+    self.handle_one_request()
+    │    └ <function BaseHTTPRequestHandler.handle_one_request at 0x0000022331E8F740>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x00000223352D7850>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 420, in handle_one_request
+    method()
+    └ <bound method WSGIRequestHandler.run_wsgi of <werkzeug.serving.WSGIRequestHandler object at 0x00000223352D7850>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+    │       │    │      └ <werkzeug.debug.DebuggedApplication object at 0x00000223350F2010>
+    │       │    └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+    │       └ <werkzeug.serving.WSGIRequestHandler object at 0x00000223352D7850>
+    └ <function WSGIRequestHandler.run_wsgi.<locals>.execute at 0x000002233516D260>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 327, in execute
+    for data in application_iter:
+                └ <generator object DebuggedApplication.debug_application at 0x0000022335109440>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\debug\__init__.py", line 330, in debug_application
+    app_iter = self.app(environ, start_response)
+               │    │   │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x000002233516D1C0>
+               │    │   └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=1068>, 'wsgi.errors': <_io.TextIOW...
+               │    └ <Flask 'app'>
+               └ <werkzeug.debug.DebuggedApplication object at 0x00000223350F2010>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x000002233516D1C0>
+           │    │        └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=1068>, 'wsgi.errors': <_io.TextIOW...
+           │    └ <function Flask.wsgi_app at 0x000002233231AC00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x000002233231A020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x0000022332319F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'check_word'
+           │    │           │    │              └ <Rule '/api/check-word' (POST, OPTIONS) -> check_word>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x0000022332E479C0>, 'get_visualization': <function get_visualizatio...
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x000002233231A2A0>
+           └ <Flask 'app'>
+
+> File "C:\Users\DELL\semantix_like\backend\app.py", line 44, in check_word
+    return jsonify(response.json())
+           │       │        └ <function Response.json at 0x0000022332EDDD00>
+           │       └ <Response [404]>
+           └ <function jsonify at 0x00000223321022A0>
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\models.py", line 978, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+          └ <class 'requests.exceptions.JSONDecodeError'>
+
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-02-01 15:29:49.561 | INFO     | __main__:get_game_state:64 - Fetching game state from https://miroir-semantix-api.hf.space/api/game-state
+2025-02-01 15:29:49.867 | INFO     | __main__:get_game_state:66 - Response status: 404
+2025-02-01 15:29:50.084 | ERROR    | __main__:get_game_state:69 - Error getting game state
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\models.py", line 974, in json
+    return complexjson.loads(self.text, **kwargs)
+           │           │     │    │       └ {}
+           │           │     │    └ <property object at 0x0000022332EC7E70>
+           │           │     └ <Response [404]>
+           │           └ <function loads at 0x000002232FD8E0C0>
+           └ <module 'json' from 'C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\json\\__init__.py'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           │                │      └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+           │                └ <function JSONDecoder.decode at 0x000002232FD8D940>
+           └ <json.decoder.JSONDecoder object at 0x000002232F6325D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               │    │          │      │  └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+               │    │          │      └ <built-in method match of re.Pattern object at 0x000002232FD81560>
+               │    │          └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+               │    └ <function JSONDecoder.raw_decode at 0x000002232FD8D9E0>
+               └ <json.decoder.JSONDecoder object at 0x000002232F6325D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+          │                                  └ '<!DOCTYPE html>\n<html class="">\n<head>\n    <meta charset="utf-8"/>\n    <meta\n            name="viewport"\n            c...
+          └ <class 'json.decoder.JSONDecodeError'>
+
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 995, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002233175D8A0>
+    └ <Thread(Thread-14 (process_request_thread), started daemon 1276)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000002233175D580>
+    └ <Thread(Thread-14 (process_request_thread), started daemon 1276)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-14 (process_request_thread), started daemon 1276)>
+    │    │        │    └ (<socket.socket fd=1096, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 51490)>, ('127.0.0.1', 514...
+    │    │        └ <Thread(Thread-14 (process_request_thread), started daemon 1276)>
+    │    └ <bound method ThreadingMixIn.process_request_thread of <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>>
+    └ <Thread(Thread-14 (process_request_thread), started daemon 1276)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 691, in process_request_thread
+    self.finish_request(request, client_address)
+    │    │              │        └ ('127.0.0.1', 51490)
+    │    │              └ <socket.socket fd=1096, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 51490)>
+    │    └ <function BaseServer.finish_request at 0x00000223318A89A0>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 361, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    │    │                   │        │               └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+    │    │                   │        └ ('127.0.0.1', 51490)
+    │    │                   └ <socket.socket fd=1096, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 51490)>
+    │    └ <class 'werkzeug.serving.WSGIRequestHandler'>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 755, in __init__
+    self.handle()
+    │    └ <function WSGIRequestHandler.handle at 0x0000022331FEBEC0>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x0000022335236A90>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 392, in handle
+    super().handle()
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 432, in handle
+    self.handle_one_request()
+    │    └ <function BaseHTTPRequestHandler.handle_one_request at 0x0000022331E8F740>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x0000022335236A90>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 420, in handle_one_request
+    method()
+    └ <bound method WSGIRequestHandler.run_wsgi of <werkzeug.serving.WSGIRequestHandler object at 0x0000022335236A90>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+    │       │    │      └ <werkzeug.debug.DebuggedApplication object at 0x00000223350F2010>
+    │       │    └ <werkzeug.serving.ThreadedWSGIServer object at 0x0000022334B35ED0>
+    │       └ <werkzeug.serving.WSGIRequestHandler object at 0x0000022335236A90>
+    └ <function WSGIRequestHandler.run_wsgi.<locals>.execute at 0x000002233516E3E0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 327, in execute
+    for data in application_iter:
+                └ <generator object DebuggedApplication.debug_application at 0x0000022335109440>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\debug\__init__.py", line 330, in debug_application
+    app_iter = self.app(environ, start_response)
+               │    │   │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x000002233516E340>
+               │    │   └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=1096>, 'wsgi.errors': <_io.TextIOW...
+               │    └ <Flask 'app'>
+               └ <werkzeug.debug.DebuggedApplication object at 0x00000223350F2010>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x000002233516E340>
+           │    │        └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=1096>, 'wsgi.errors': <_io.TextIOW...
+           │    └ <function Flask.wsgi_app at 0x000002233231AC00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x000002233231A020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x0000022332319F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'get_game_state'
+           │    │           │    │              └ <Rule '/api/game-state' (HEAD, GET, OPTIONS) -> get_game_state>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x0000022332E479C0>, 'get_visualization': <function get_visualizatio...
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x000002233231A2A0>
+           └ <Flask 'app'>
+
+> File "C:\Users\DELL\semantix_like\backend\app.py", line 67, in get_game_state
+    return jsonify(response.json())
+           │       │        └ <function Response.json at 0x0000022332EDDD00>
+           │       └ <Response [404]>
+           └ <function jsonify at 0x00000223321022A0>
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\models.py", line 978, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+          └ <class 'requests.exceptions.JSONDecodeError'>
+
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-02-01 15:36:25.863 | INFO     | __main__:<module>:161 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 15:36:27.154 | INFO     | __main__:<module>:161 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 15:36:53.146 | INFO     | __main__:system_health:49 - Performing system health check...
+2025-02-01 15:36:53.482 | INFO     | __main__:system_health:71 - Health check results: {'status': 'degraded', 'timestamp': '2025-02-01 15:36:53', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'huggingface': {'status': 'error', 'message': 'Hugging Face service returned status 404', 'response_time': '0.328s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 15:49:52.435 | INFO     | __main__:<module>:161 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 15:51:36.406 | INFO     | __main__:system_health:49 - Performing system health check...
+2025-02-01 15:51:36.756 | INFO     | __main__:system_health:71 - Health check results: {'status': 'degraded', 'timestamp': '2025-02-01 15:51:36', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'huggingface': {'status': 'error', 'message': 'Hugging Face service returned status 404', 'response_time': '0.344s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 15:52:37.946 | INFO     | __main__:<module>:161 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 15:53:20.640 | INFO     | __main__:<module>:161 - Starting Flask app with MODEL_API_URL: https://huggingface.co/spaces/Miroir/semantix-api
+2025-02-01 15:53:22.668 | INFO     | __main__:<module>:161 - Starting Flask app with MODEL_API_URL: https://huggingface.co/spaces/Miroir/semantix-api
+2025-02-01 15:56:47.463 | INFO     | __main__:system_health:49 - Performing system health check...
+2025-02-01 15:56:47.812 | INFO     | __main__:system_health:71 - Health check results: {'status': 'degraded', 'timestamp': '2025-02-01 15:56:47', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'huggingface': {'status': 'error', 'message': 'Hugging Face service returned status 404', 'response_time': '0.325s', 'endpoint': 'https://huggingface.co/spaces/Miroir/semantix-api'}}}
+2025-02-01 16:00:44.946 | INFO     | __main__:<module>:161 - Starting Flask app with MODEL_API_URL: https://huggingface.co/spaces/Miroir/semantix-api
+2025-02-01 16:00:49.756 | INFO     | __main__:<module>:161 - Starting Flask app with MODEL_API_URL: https://huggingface.co/spaces/Miroir/semantix-api
+2025-02-01 16:20:00.075 | INFO     | __main__:<module>:161 - Starting Flask app with MODEL_API_URL: https://huggingface.co/spaces/Miroir/semantix-api
+2025-02-01 16:20:50.628 | INFO     | __main__:system_health:49 - Performing system health check...
+2025-02-01 16:20:50.953 | INFO     | __main__:system_health:71 - Health check results: {'status': 'degraded', 'timestamp': '2025-02-01 16:20:50', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'huggingface': {'status': 'error', 'message': 'Hugging Face service returned status 404', 'response_time': '0.313s', 'endpoint': 'https://huggingface.co/spaces/Miroir/semantix-api'}}}
+2025-02-01 16:21:53.028 | INFO     | __main__:system_health:49 - Performing system health check...
+2025-02-01 16:21:53.422 | INFO     | __main__:system_health:71 - Health check results: {'status': 'degraded', 'timestamp': '2025-02-01 16:21:53', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'huggingface': {'status': 'error', 'message': 'Hugging Face service returned status 404', 'response_time': '0.385s', 'endpoint': 'https://huggingface.co/spaces/Miroir/semantix-api'}}}
+2025-02-01 16:24:18.186 | INFO     | __main__:<module>:192 - Starting Flask app with MODEL_API_URL: https://huggingface.co/spaces/Miroir/semantix-api
+2025-02-01 16:25:58.875 | INFO     | __main__:<module>:196 - Starting Flask app with MODEL_API_URL: https://huggingface.co/spaces/Miroir/semantix-api
+2025-02-01 16:26:23.720 | INFO     | __main__:<module>:196 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 16:26:25.035 | INFO     | __main__:<module>:196 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space

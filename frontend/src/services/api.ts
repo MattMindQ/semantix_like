@@ -12,22 +12,31 @@ const getBaseUrl = () => {
 
 const API_URL = getBaseUrl();
 
+
+export async function checkSystemHealth() {
+    return apiCall('/system-health');
+}
 // Helper function for API calls
 async function apiCall(endpoint: string, options?: RequestInit) {
-    const response = await fetch(`${API_URL}${endpoint}`, {
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options?.headers,
-        },
-    });
+    try {
+        const response = await fetch(`${API_URL}${endpoint}`, {
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
+        });
 
-    if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || `API call failed: ${response.statusText}`);
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || `API call failed: ${response.statusText}`);
+        }
+
+        return response.json();
+    } catch (error) {
+        console.error(`API Error (${endpoint}):`, error);
+        throw error;
     }
-
-    return response.json();
 }
 
 export async function checkWord(guessWord: string) {

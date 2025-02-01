@@ -1,6 +1,11 @@
 {
-  "target_word": "vlog",
-  "attempts": [],
+  "target_word": "clandestin",
+  "attempts": [
+    {
+      "word": "maison",
+      "similarity": 0.11460769921541214
+    }
+  ],
   "word_found": false,
   "similar_words": [],
   "jokers": {
