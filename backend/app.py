@@ -3,6 +3,7 @@ from flask_cors import CORS
 from flask import request
 from loguru import logger
 import os
+import sys
 from services.word_service import WordEmbeddingService
 from services.game_service import GameService
 from services.visualization_service import VisualizationService
@@ -20,9 +21,12 @@ def create_app(test_config=None):
         }
     })
 
-    # Configure logger to use stderr for Vercel
+    # Configure logger to work both locally and on Vercel
     logger.remove()  # Remove default handler
-    logger.add(os.stderr, level="INFO")
+    logger.add(sys.stdout, level="INFO")  # Add stdout handler
+    if not os.getenv('VERCEL_ENV'):
+        # Add file logging only in local development
+        logger.add("app.log", rotation="500 MB", level="INFO")
 
     @app.after_request
     def after_request(response):
@@ -88,11 +92,9 @@ def validate_routes(app):
 # Create the app instance
 app = create_app()
 
-# For local development
 if __name__ == '__main__':
     logger.info("Starting Flask application in development mode")
     app.run(debug=True)
 
 # For Vercel deployment
-# This is important - Vercel looks for this variable
 app = app.wsgi_app
