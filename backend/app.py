@@ -7,8 +7,10 @@ import os
 import sys
 import time
 from typing import Dict, Tuple
+
 app = Flask(__name__)
 CORS(app)
+
 
 # Configure logger
 logger.remove()

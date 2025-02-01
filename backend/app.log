@@ -1602,3 +1602,11 @@ requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 2025-02-01 16:25:58.875 | INFO     | __main__:<module>:196 - Starting Flask app with MODEL_API_URL: https://huggingface.co/spaces/Miroir/semantix-api
 2025-02-01 16:26:23.720 | INFO     | __main__:<module>:196 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
 2025-02-01 16:26:25.035 | INFO     | __main__:<module>:196 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 16:40:07.410 | INFO     | __main__:<module>:198 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 16:40:08.694 | INFO     | __main__:<module>:198 - Starting Flask app with MODEL_API_URL: https://miroir-semantix-api.hf.space
+2025-02-01 16:41:00.024 | INFO     | __main__:system_health:81 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 16:41:00.028 | INFO     | __main__:check_huggingface_connection:60 - Checking Hugging Face service at: https://miroir-semantix-api.hf.space/api/health
+2025-02-01 16:41:00.988 | INFO     | __main__:system_health:107 - Health check results: {'status': 'degraded', 'timestamp': '2025-02-01 16:41:00', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'error', 'message': 'Hugging Face service returned status 404', 'response_time': '0.959s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
+2025-02-01 16:41:24.805 | INFO     | __main__:system_health:81 - Performing system health check for: https://miroir-semantix-api.hf.space
+2025-02-01 16:41:24.809 | INFO     | __main__:check_huggingface_connection:60 - Checking Hugging Face service at: https://miroir-semantix-api.hf.space/api/health
+2025-02-01 16:41:25.620 | INFO     | __main__:system_health:107 - Health check results: {'status': 'degraded', 'timestamp': '2025-02-01 16:41:25', 'environment': 'production', 'services': {'proxy': {'status': 'running', 'message': 'Proxy server is running'}, 'api': {'status': 'error', 'message': 'Hugging Face service returned status 404', 'response_time': '0.811s', 'endpoint': 'https://miroir-semantix-api.hf.space'}}}
