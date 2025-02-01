@@ -119,3 +119,308 @@
 2025-02-01 13:34:13.974 | INFO     | __main__:<module>:96 - Starting Flask application in development mode
 2025-02-01 13:35:44.335 | INFO     | routes:get_game_state:106 - Retrieved game state: {'target_word': 'gestion', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
 2025-02-01 13:45:14.439 | INFO     | services.word_service:_initialize_model:29 - Loading FastText embeddings from URL...
+2025-02-01 13:48:35.389 | INFO     | services.word_service:_initialize_model:53 - FastText model loaded successfully with 50000 words in the vocabulary.
+2025-02-01 13:48:35.398 | INFO     | __main__:create_app:52 - Services initialized successfully
+2025-02-01 13:48:35.414 | INFO     | routes:get_game_state:106 - Retrieved game state: {'target_word': 'gestion', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:48:35.423 | INFO     | __main__:validate_routes:80 - Route /api/game-state validation status: 200
+2025-02-01 13:48:35.427 | ERROR    | services.word_service:get_vector:90 - Error getting vector for word: gestion
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 93, in <module>
+    app = create_app()
+          └ <function create_app at 0x00000147AC2BAAC0>
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 65, in create_app
+    validate_routes(app)
+    │               └ <Flask 'app'>
+    └ <function validate_routes at 0x00000147C3610720>
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 79, in validate_routes
+    response = client.get(endpoint)
+               │      │   └ '/api/visualization'
+               │      └ <function Client.get at 0x00000147AEA50540>
+               └ <FlaskClient <Flask 'app'>>
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1242, in get
+    return self.open(*args, **kw)
+           │    │     │       └ {'method': 'GET'}
+           │    │     └ ('/api/visualization',)
+           │    └ <function FlaskClient.open at 0x00000147C3C69C60>
+           └ <FlaskClient <Flask 'app'>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\testing.py", line 223, in open
+    response = super().open(
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1196, in open
+    response = self.run_wsgi_app(request.environ, buffered=buffered)
+               │    │            │       │                 └ False
+               │    │            │       └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+               │    │            └ <Request 'http://localhost/api/visualization' [GET]>
+               │    └ <function Client.run_wsgi_app at 0x00000147AEA50360>
+               └ <FlaskClient <Flask 'app'>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1068, in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         │            │    │            │                 └ False
+         │            │    │            └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+         │            │    └ <Flask 'app'>
+         │            └ <FlaskClient <Flask 'app'>>
+         └ <function run_wsgi_app at 0x00000147AEA50AE0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1344, in run_wsgi_app
+    app_rv = app(environ, start_response)
+             │   │        └ <function run_wsgi_app.<locals>.start_response at 0x00000147C3C69760>
+             │   └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+             └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function run_wsgi_app.<locals>.start_response at 0x00000147C3C69760>
+           │    │        └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+           │    └ <function Flask.wsgi_app at 0x00000147AEC82C00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x00000147AEC82020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x00000147AEC81F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'get_visualization'
+           │    │           │    │              └ <Rule '/api/visualization' (GET, HEAD, OPTIONS) -> get_visualization>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x00000147C4EA4040>, 'get_visualization': <function register_routes....
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x00000147AEC822A0>
+           └ <Flask 'app'>
+
+  File "C:\Users\DELL\semantix_like\backend\routes.py", line 15, in get_visualization
+    viz_data = visualization_service.prepare_3d_visualization(
+               │                     └ <function VisualizationService.prepare_3d_visualization at 0x00000147C3C57100>
+               └ <services.visualization_service.VisualizationService object at 0x00000147C4F61B90>
+
+  File "C:\Users\DELL\semantix_like\backend\services\visualization_service.py", line 28, in prepare_3d_visualization
+    target_embedding = self.word_service.get_vector(target_word)
+                       │    │            │          └ 'gestion'
+                       │    │            └ <function WordEmbeddingService.get_vector at 0x00000147BFFA72E0>
+                       │    └ <services.word_service.WordEmbeddingService object at 0x00000147C39A26D0>
+                       └ <services.visualization_service.VisualizationService object at 0x00000147C4F61B90>
+
+> File "C:\Users\DELL\semantix_like\backend\services\word_service.py", line 85, in get_vector
+    if w not in self.model:
+       │        └ <services.word_service.WordEmbeddingService object at 0x00000147C39A26D0>
+       └ 'gestion'
+
+AttributeError: 'WordEmbeddingService' object has no attribute 'model'
+2025-02-01 13:48:35.572 | INFO     | __main__:validate_routes:80 - Route /api/visualization validation status: 200
+2025-02-01 13:48:35.579 | INFO     | routes:check_word:65 - Word check response: {'similarity': 0.15646283328533173, 'history': [{'word': 'test', 'similarity': 0.15646283328533173}], 'word_found': False, 'similar_words': []}
+2025-02-01 13:48:35.586 | INFO     | __main__:validate_routes:90 - Route /api/check-word validation status: 200
+2025-02-01 13:48:35.592 | INFO     | routes:use_joker:81 - Received joker request with type: high_similarity
+2025-02-01 13:48:35.595 | INFO     | services.game_service:use_joker:57 - Using joker of type: high_similarity
+2025-02-01 13:48:35.599 | INFO     | services.game_service:use_joker:77 - Target word: gestion, range: (0.7, 0.8)
+2025-02-01 13:48:35.603 | INFO     | services.word_service:get_words_in_range:117 - Finding words for 'gestion' in range [0.7, 0.8]
+2025-02-01 13:48:35.609 | ERROR    | services.word_service:get_vector:90 - Error getting vector for word: gestion
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 93, in <module>
+    app = create_app()
+          └ <function create_app at 0x00000147AC2BAAC0>
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 65, in create_app
+    validate_routes(app)
+    │               └ <Flask 'app'>
+    └ <function validate_routes at 0x00000147C3610720>
+
+  File "C:\Users\DELL\semantix_like\backend\app.py", line 89, in validate_routes
+    response = client.post(endpoint, json=data)
+               │      │    │              └ {'joker_type': 'high_similarity'}
+               │      │    └ '/api/use-joker'
+               │      └ <function Client.post at 0x00000147AEA505E0>
+               └ <FlaskClient <Flask 'app'>>
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1247, in post
+    return self.open(*args, **kw)
+           │    │     │       └ {'json': {'joker_type': 'high_similarity'}, 'method': 'POST'}
+           │    │     └ ('/api/use-joker',)
+           │    └ <function FlaskClient.open at 0x00000147C3C69C60>
+           └ <FlaskClient <Flask 'app'>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\testing.py", line 223, in open
+    response = super().open(
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1196, in open
+    response = self.run_wsgi_app(request.environ, buffered=buffered)
+               │    │            │       │                 └ False
+               │    │            │       └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+               │    │            └ <Request 'http://localhost/api/use-joker' [POST]>
+               │    └ <function Client.run_wsgi_app at 0x00000147AEA50360>
+               └ <FlaskClient <Flask 'app'>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1068, in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         │            │    │            │                 └ False
+         │            │    │            └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+         │            │    └ <Flask 'app'>
+         │            └ <FlaskClient <Flask 'app'>>
+         └ <function run_wsgi_app at 0x00000147AEA50AE0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\test.py", line 1344, in run_wsgi_app
+    app_rv = app(environ, start_response)
+             │   │        └ <function run_wsgi_app.<locals>.start_response at 0x00000147C3C6A520>
+             │   └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+             └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function run_wsgi_app.<locals>.start_response at 0x00000147C3C6A520>
+           │    │        └ {'REMOTE_ADDR': '127.0.0.1', 'HTTP_USER_AGENT': 'werkzeug/2.3.4', 'werkzeug.debug.preserve_context': <built-in method append ...
+           │    └ <function Flask.wsgi_app at 0x00000147AEC82C00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x00000147AEC82020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x00000147AEC81F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'use_joker'
+           │    │           │    │              └ <Rule '/api/use-joker' (POST, OPTIONS) -> use_joker>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x00000147C4EA4040>, 'get_visualization': <function register_routes....
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x00000147AEC822A0>
+           └ <Flask 'app'>
+
+  File "C:\Users\DELL\semantix_like\backend\routes.py", line 87, in use_joker
+    result = game_service.use_joker(joker_type)
+             │            │         └ 'high_similarity'
+             │            └ <function GameService.use_joker at 0x00000147BFFC67A0>
+             └ <services.game_service.GameService object at 0x00000147C3B4ABD0>
+
+  File "C:\Users\DELL\semantix_like\backend\services\game_service.py", line 80, in use_joker
+    similar_words = self.word_service.get_words_in_range(
+                    │    │            └ <function WordEmbeddingService.get_words_in_range at 0x00000147BFFC4B80>
+                    │    └ <services.word_service.WordEmbeddingService object at 0x00000147C39A26D0>
+                    └ <services.game_service.GameService object at 0x00000147C3B4ABD0>
+
+  File "C:\Users\DELL\semantix_like\backend\services\word_service.py", line 119, in get_words_in_range
+    target_vec = self.get_vector(target_word)
+                 │    │          └ 'gestion'
+                 │    └ <function WordEmbeddingService.get_vector at 0x00000147BFFA72E0>
+                 └ <services.word_service.WordEmbeddingService object at 0x00000147C39A26D0>
+
+> File "C:\Users\DELL\semantix_like\backend\services\word_service.py", line 85, in get_vector
+    if w not in self.model:
+       │        └ <services.word_service.WordEmbeddingService object at 0x00000147C39A26D0>
+       └ 'gestion'
+
+AttributeError: 'WordEmbeddingService' object has no attribute 'model'
+2025-02-01 13:48:35.721 | WARNING  | services.word_service:get_words_in_range:121 - No vector for target word: gestion
+2025-02-01 13:48:35.725 | INFO     | services.game_service:use_joker:88 - Found 0 words using joker:
+2025-02-01 13:48:35.730 | INFO     | services.game_service:use_joker:96 - Remaining high_similarity jokers: 1
+2025-02-01 13:48:35.737 | INFO     | routes:use_joker:89 - Joker response:
+2025-02-01 13:48:35.741 | INFO     | routes:use_joker:90 - Words: []
+2025-02-01 13:48:35.743 | INFO     | routes:use_joker:91 - Remaining jokers: {'high_similarity': {'remaining': 1, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}
+2025-02-01 13:48:35.749 | INFO     | __main__:validate_routes:90 - Route /api/use-joker validation status: 200
+2025-02-01 13:48:35.760 | INFO     | routes:reset_game:29 - Game reset with new state: {'target_word': 'vlog', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 13:48:35.765 | INFO     | __main__:validate_routes:90 - Route /api/reset-game validation status: 200
+2025-02-01 13:48:35.772 | INFO     | __main__:<module>:96 - Starting Flask application in development mode
+2025-02-01 14:33:32.788 | INFO     | routes:get_game_state:106 - Retrieved game state: {'target_word': 'vlog', 'attempts': [], 'word_found': False, 'similar_words': [], 'jokers': {'high_similarity': {'remaining': 2, 'words_per_use': 3}, 'medium_similarity': {'remaining': 2, 'words_per_use': 3}}}
+2025-02-01 14:33:33.135 | ERROR    | services.word_service:get_vector:90 - Error getting vector for word: vlog
+Traceback (most recent call last):
+
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 995, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x00000147AE1298A0>
+    └ <Thread(Thread-11 (process_request_thread), started daemon 1004)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x00000147AE129580>
+    └ <Thread(Thread-11 (process_request_thread), started daemon 1004)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-11 (process_request_thread), started daemon 1004)>
+    │    │        │    └ (<socket.socket fd=3692, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 60124)>, ('127.0.0.1', 601...
+    │    │        └ <Thread(Thread-11 (process_request_thread), started daemon 1004)>
+    │    └ <bound method ThreadingMixIn.process_request_thread of <werkzeug.serving.ThreadedWSGIServer object at 0x00000147C973E5D0>>
+    └ <Thread(Thread-11 (process_request_thread), started daemon 1004)>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 691, in process_request_thread
+    self.finish_request(request, client_address)
+    │    │              │        └ ('127.0.0.1', 60124)
+    │    │              └ <socket.socket fd=3692, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 60124)>
+    │    └ <function BaseServer.finish_request at 0x00000147AE6789A0>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x00000147C973E5D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 361, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    │    │                   │        │               └ <werkzeug.serving.ThreadedWSGIServer object at 0x00000147C973E5D0>
+    │    │                   │        └ ('127.0.0.1', 60124)
+    │    │                   └ <socket.socket fd=3692, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 60124)>
+    │    └ <class 'werkzeug.serving.WSGIRequestHandler'>
+    └ <werkzeug.serving.ThreadedWSGIServer object at 0x00000147C973E5D0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\socketserver.py", line 755, in __init__
+    self.handle()
+    │    └ <function WSGIRequestHandler.handle at 0x00000147AE98BEC0>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x00000147C9799990>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 392, in handle
+    super().handle()
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 432, in handle
+    self.handle_one_request()
+    │    └ <function BaseHTTPRequestHandler.handle_one_request at 0x00000147AE843740>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x00000147C9799990>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\http\server.py", line 420, in handle_one_request
+    method()
+    └ <bound method WSGIRequestHandler.run_wsgi of <werkzeug.serving.WSGIRequestHandler object at 0x00000147C9799990>>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+    │       │    │      └ <werkzeug.debug.DebuggedApplication object at 0x00000147C3A55CD0>
+    │       │    └ <werkzeug.serving.ThreadedWSGIServer object at 0x00000147C973E5D0>
+    │       └ <werkzeug.serving.WSGIRequestHandler object at 0x00000147C9799990>
+    └ <function WSGIRequestHandler.run_wsgi.<locals>.execute at 0x00000147C97872E0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 327, in execute
+    for data in application_iter:
+                └ <generator object DebuggedApplication.debug_application at 0x00000147C976CE00>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\debug\__init__.py", line 330, in debug_application
+    app_iter = self.app(environ, start_response)
+               │    │   │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x00000147C9787EC0>
+               │    │   └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=3692>, 'wsgi.errors': <_io.TextIOW...
+               │    └ <Flask 'app'>
+               └ <werkzeug.debug.DebuggedApplication object at 0x00000147C3A55CD0>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2551, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x00000147C9787EC0>
+           │    │        └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=3692>, 'wsgi.errors': <_io.TextIOW...
+           │    └ <function Flask.wsgi_app at 0x00000147AEC82C00>
+           └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x00000147AEC82020>
+               └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x00000147AEC81F80>
+         └ <Flask 'app'>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'get_visualization'
+           │    │           │    │              └ <Rule '/api/visualization' (GET, HEAD, OPTIONS) -> get_visualization>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x00000147C4EA4040>, 'get_visualization': <function register_routes....
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x00000147AEC822A0>
+           └ <Flask 'app'>
+
+  File "C:\Users\DELL\semantix_like\backend\routes.py", line 15, in get_visualization
+    viz_data = visualization_service.prepare_3d_visualization(
+               │                     └ <function VisualizationService.prepare_3d_visualization at 0x00000147C3C57100>
+               └ <services.visualization_service.VisualizationService object at 0x00000147C4F61B90>
+
+  File "C:\Users\DELL\semantix_like\backend\services\visualization_service.py", line 28, in prepare_3d_visualization
+    target_embedding = self.word_service.get_vector(target_word)
+                       │    │            │          └ 'vlog'
+                       │    │            └ <function WordEmbeddingService.get_vector at 0x00000147BFFA72E0>
+                       │    └ <services.word_service.WordEmbeddingService object at 0x00000147C39A26D0>
+                       └ <services.visualization_service.VisualizationService object at 0x00000147C4F61B90>
+
+> File "C:\Users\DELL\semantix_like\backend\services\word_service.py", line 85, in get_vector
+    if w not in self.model:
+       │        └ <services.word_service.WordEmbeddingService object at 0x00000147C39A26D0>
+       └ 'vlog'
+
+AttributeError: 'WordEmbeddingService' object has no attribute 'model'
